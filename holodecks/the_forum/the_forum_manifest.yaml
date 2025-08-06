@@ -1,0 +1,177 @@
+personas:
+  batches:
+    targets:
+      - by: panel
+      - by: role
+      - composite:
+          for_each: panel
+          include_roles: [chair, principal]
+          file_suffix: "principal_team"
+      - composite:
+          for_all: panel
+          include_roles: [chair, principal]
+          file_suffix: "all_principals"
+    everybody: true
+    file_prefix: "persona"
+    markdown_header: true
+    persona_separator: "\n---\n"
+    encoding: "utf-8"
+
+  # No global singleton members for Forum (add here if needed)
+  individuals: []
+
+  groups:
+    - name: Inquiry Panel
+      type: panel
+      chair: Carl Sagan
+      principal:
+        - Spock
+        - Charles Darwin
+      members:
+        - Richard Feynman
+        - Albert Einstein
+        - Alan Turing
+        - Nikola Tesla
+        - Hedy Lamarr
+        - Margaret Mead
+        - Dorothy Parker
+
+    - name: Insight Panel
+      type: panel
+      chair: Jean-Luc Picard
+      principal:
+        - Voltaire
+        - Oscar Wilde
+      members:
+        - Marcus Aurelius
+        - Immanuel Kant
+        - Lao Tzu
+        - Friedrich Nietzsche
+        - Margaret Mead
+        - Mark Twain
+        - Noam Chomsky
+
+    - name: Expression Panel
+      type: panel
+      chair: Benjamin Franklin
+      principal:
+        - Leonardo da Vinci
+        - David Bowie
+      members:
+        - Mark Twain
+        - Akira Kurosawa
+        - Oscar Wilde
+        - Dorothy Parker
+        - Hedy Lamarr
+        - Grace Hopper
+        - Carl Sagan
+
+    - name: Innovation Panel
+      type: panel
+      chair: Leonardo da Vinci
+      principal:
+        - Nikola Tesla
+        - Grace Hopper
+      members:
+        - Alan Turing
+        - Hedy Lamarr
+        - Mark Twain
+        - Richard Feynman
+        - Eleanor Roosevelt
+        - Spock
+
+    - name: Connection Panel
+      type: panel
+      chair: Benjamin Franklin
+      principal:
+        - Eleanor Roosevelt
+        - John Maynard Keynes
+      members:
+        - Harvey Milk
+        - Abraham Lincoln
+        - Margaret Mead
+        - Sun Tzu
+        - Dorothy Parker
+        - Akira Kurosawa
+        - Hedy Lamarr
+        - Oscar Wilde
+
+    - name: Leadership Panel
+      type: panel
+      chair: Jean-Luc Picard
+      principal:
+        - Abraham Lincoln
+        - Otto von Bismarck
+      members:
+        - Marcus Aurelius
+        - Sun Tzu
+        - Benjamin Franklin
+        - Eleanor Roosevelt
+        - Grace Hopper
+
+    - name: Confidants Panel
+      type: panel
+      members:
+        - Jean-Luc Picard
+        - Margaret Mead
+        - Abraham Lincoln
+        - Dorothy Parker
+        - Eleanor Roosevelt
+        - Carl Sagan
+        - Lao Tzu
+        - Mark Twain
+        - Oscar Wilde
+        - Grace Hopper
+
+    - name: Conspirators Panel
+      type: panel
+      members:
+        - Oscar Wilde
+        - Dorothy Parker
+        - Mark Twain
+        - Voltaire
+        - David Bowie
+        - Benjamin Franklin
+        - Hedy Lamarr
+        - Richard Feynman
+        - Friedrich Nietzsche
+        - Alfred Hitchcock
+
+    - name: Storytellers Panel
+      type: panel
+      members:
+        - Mark Twain
+        - Oscar Wilde
+        - Dorothy Parker
+        - Akira Kurosawa
+        - Carl Sagan
+        - David Bowie
+        - Margaret Mead
+        - Jean-Luc Picard
+        - Benjamin Franklin
+        - Leonardo da Vinci
+
+    - name: Wisecracks Panel
+      type: panel
+      members:
+        - Oscar Wilde
+        - Dorothy Parker
+        - Mark Twain
+        - Voltaire
+        - David Bowie
+        - Benjamin Franklin
+        - Richard Feynman
+        - Carl Sagan
+        - Hedy Lamarr
+        - Friedrich Nietzsche
+
+    - name: Heroes Panel
+      type: panel
+      members:
+        - Spock
+        - Carl Sagan
+        - Jean-Luc Picard
+        - Benjamin Franklin
+        - Albert Einstein
+        - Richard Feynman
+        - David Bowie
