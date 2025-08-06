@@ -1,10 +1,10 @@
-# The Holodeck
+# The Sandbox
 
-The Holodeck is a creative and immersive space designed for exploration, training, and scenario-based planning. It serves as a platform for the crew to engage in simulations, develop strategies, and enhance their skills in a controlled environment. The Holodeck team is responsible for maintaining the integrity of the simulations and ensuring that all programs run smoothly.
+The Sandbox is a creative and immersive space designed for exploration, training, and scenario-based planning. It serves as a platform for the crew to engage in simulations, develop strategies, and enhance their skills in a controlled environment. The Holodeck team is responsible for maintaining the integrity of the simulations and ensuring that all programs run smoothly.
 
 ## Holodeck Team
 
-Accomplished members of the Holodeck team are experts in various fields, including programming, scenario design, and user experience. They work together to create engaging and educational simulations that challenge the crew and foster personal growth.
+The Sandbox is manned by accomplished members of the Holodeck team who are experts in various fields, including programming, scenario design, and user experience. They work together to create engaging and educational simulations that challenge the crew and foster personal growth.
 
 - The Doctor
 - Tom Paris

@@ -1,0 +1,91 @@
+#!/bin/bash
+set -e
+
+usage() {
+  echo "Usage:"
+  echo "  holoplex build <holodeck>"
+  echo "  holoplex check <holodeck>"
+  echo "  holoplex extract <holodeck>"
+  echo "  holoplex clean <holodeck>"
+  echo
+  echo "  Example: holoplex build the_bridge"
+  echo "           holoplex build the_forum"
+  echo "           holoplex build the_sandbox"
+  exit 1
+}
+
+if [ "$#" -lt 2 ]; then
+  usage
+fi
+
+CMD=$1
+HOLODECK=$2
+
+# Construct paths based on holodeck name
+HOLODECK_DIR="holodecks/$HOLODECK"
+HOLODECK_FILE="$HOLODECK_DIR/$HOLODECK.md"
+
+# Check if holodeck directory and file exist
+if [ ! -d "$HOLODECK_DIR" ]; then
+  echo "Error: Holodeck directory '$HOLODECK_DIR' does not exist."
+  exit 1
+fi
+
+if [ ! -f "$HOLODECK_FILE" ]; then
+  echo "Error: Holodeck manifest file '$HOLODECK_FILE' does not exist."
+  exit 1
+fi
+
+EXTRACTOR="bin/${HOLODECK}_extractor.py"
+BATCHER="bin/${HOLODECK}_batcher.py"
+PERSONA_CHECKER="bin/persona_checker.py"
+MANIFEST_FILE="build/${HOLODECK}_manifest.yaml"
+BUILD_DIR="build/$HOLODECK"
+
+case "$CMD" in
+  build)
+    # Always clean before a new build
+    if [ -f "$MANIFEST_FILE" ]; then
+      rm "$MANIFEST_FILE"
+      echo "Removed $MANIFEST_FILE"
+    fi
+    if [ -d "$BUILD_DIR" ]; then
+      rm -rf "$BUILD_DIR"
+      echo "Removed previous $BUILD_DIR/"
+    fi
+    
+    # Step 1: Extract manifest from holodeck file
+    python bin/${HOLODECK}_extractor.py
+    # Step 2: Check persona files against manifest
+    python bin/persona_checker.py "$HOLODECK"
+    # Step 3: Batch persona files
+    python bin/${HOLODECK}_batcher.py
+    echo "Holoplex build complete for $HOLODECK → $BUILD_DIR/"
+    ;;
+  check)
+    python bin/${HOLODECK}_extractor.py
+    python bin/persona_checker.py "$HOLODECK"
+    ;;
+  extract)
+    python bin/${HOLODECK}_extractor.py
+    ;;
+  clean)
+    clean_anything=0
+    if [ -f "$MANIFEST_FILE" ]; then
+      rm "$MANIFEST_FILE"
+      echo "Removed $MANIFEST_FILE"
+      clean_anything=1
+    fi
+    if [ -d "$BUILD_DIR" ]; then
+      rm -rf "$BUILD_DIR"
+      echo "Removed $BUILD_DIR/"
+      clean_anything=1
+    fi
+    if [ $clean_anything -eq 0 ]; then
+      echo "Nothing to clean for $HOLODECK."
+    fi
+    ;;
+  *)
+    usage
+    ;;
+esac
