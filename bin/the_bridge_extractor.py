@@ -9,7 +9,7 @@ logging.basicConfig(
     format='%(levelname)s:%(message)s'
 )
 
-bridge_file = 'the_bridge.md'
+bridge_file = 'holodecks/the_bridge/the_bridge.md'
 
 # Mapping from tag to role label for each department
 TAG2ROLE = {
