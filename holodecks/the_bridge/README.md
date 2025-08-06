@@ -1,6 +1,6 @@
 # The Bridge
 
-*Each department is composed of a #head (department leader), #staff (two junior officers), and any number of untagged crew members. Every individual's assignments and roles are defined in `holodecks/the_bridge/the_bridge.md`.The Bridge** is the central organizational and simulation structure in Holoplex, inspired by the command and department model of a starship bridge. It is designed for comprehensive personal and team management, strategic decision-making, and scenario simulation—blending real-world organizational logic with collaborative, role-based protocols.
+*Each department is composed of a #head (department leader), #staff (two junior officers), and any number of untagged crew members. Every individual's assignments and roles are defined in `holodecks/the_bridge/the_bridge.md`. The Bridge** is the central organizational and simulation structure in Holoplex, inspired by the command and department model of a starship bridge. It is designed for comprehensive personal and team management, strategic decision-making, and scenario simulation—blending real-world organizational logic with collaborative, role-based protocols.
 
 ---
 
