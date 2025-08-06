@@ -1,0 +1,14 @@
+personas:
+  batches:
+    targets:
+      - for_each: member
+    everybody: true
+    file_prefix: "persona"
+    markdown_header: true
+    persona_separator: "\n---\n"
+    encoding: "utf-8"
+
+  individuals:
+    - Reginald Barclay
+    - The Doctor (EMH)
+    - Geordi La Forge
