@@ -1,6 +1,6 @@
 # The Bridge
 
-**The Bridge** is the central organizational and simulation structure in Holoplex, inspired by the command and department model of a starship bridge. It is designed for comprehensive personal and team management, strategic decision-making, and scenario simulation—blending real-world organizational logic with collaborative, role-based protocols.
+*Each department is composed of a #head (department leader), #staff (two junior officers), and any number of untagged crew members. Every individual's assignments and roles are defined in `holodecks/the_bridge/the_bridge.md`.The Bridge** is the central organizational and simulation structure in Holoplex, inspired by the command and department model of a starship bridge. It is designed for comprehensive personal and team management, strategic decision-making, and scenario simulation—blending real-world organizational logic with collaborative, role-based protocols.
 
 ---
 
@@ -26,7 +26,7 @@ Each department is composed of a #head (department leader), #staff (two junior o
 - **Hierarchical and Flexible:** Supports scenarios from single-department meetings to full-crew/all hands assemblies.
 - **Simulation-Ready:** All simulation, mode, and command protocols are governed by `protocol_holodeck.md` for immersive holodeck use.
 - **Meeting & Mode Management:** Supports advanced session logic (e.g., Meeting Mode, Talk Mode) for collaborative discussion and formal decision flows.
-- **Transparent Authority:** All assignments, tags, and department membership are governed solely by `the_bridge.md`, ensuring clear, auditable structure.
+- **Transparent Authority:** All assignments, tags, and department membership are governed solely by `holodecks/the_bridge/the_bridge.md`, ensuring clear, auditable structure.
 - **Integrated Resource Support:** Department and bridge-specific resources, templates, and assets can be bundled alongside batch builds.
 
 ---
@@ -42,9 +42,9 @@ Each department is composed of a #head (department leader), #staff (two junior o
 
 ## How To Interact With The Bridge
 
-- **Assignments:** Updated exclusively in `the_bridge.md` for full reproducibility.
+- **Assignments:** Updated exclusively in `holodecks/the_bridge/the_bridge.md` for full reproducibility.
 - **Batching & Outputs:** Build artifacts (batches, group files, resources, configs) are generated and placed in `build/the_bridge/`.
-- **Simulation Protocol:** For all holodeck and scenario operations, refer to `protocol_holodeck.md`. The Bridge defers to this protocol for all runtime behavior unless specifically overridden in `the_bridge.md`.
+- **Simulation Protocol:** For all holodeck and scenario operations, refer to `protocol_holodeck.md`. The Bridge defers to this protocol for all runtime behavior unless specifically overridden in `holodecks/the_bridge/the_bridge.md`.
 - **Extensibility:** Departments, members, and roles can be expanded, reconfigured, or used as templates for new organizational models.
 
 ---
@@ -52,8 +52,8 @@ Each department is composed of a #head (department leader), #staff (two junior o
 ## Learn More
 
 - For **automation rules, simulation protocols, and address conventions**, see `protocol_holodeck.md`.
-- For **assignments and department configuration**, edit only `the_bridge.md` and rebuild.
+- For **assignments and department configuration**, edit only `holodecks/the_bridge/the_bridge.md` and rebuild.
 - For **department-head, staff, and crew rosters**, see batch files in `build/the_bridge/`.
-- For resources or onboarding documents, use files in `resources/the_bridge/` and `build/the_bridge/resources/the_bridge/`.
+- For resources or onboarding documents, use files in `holodecks/the_bridge/` and `build/the_bridge/resources/the_bridge/`.
 
 ---

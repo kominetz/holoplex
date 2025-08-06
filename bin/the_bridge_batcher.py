@@ -5,7 +5,7 @@ from collections import defaultdict
 
 # --- CONFIGURATION ---
 MANIFEST = os.path.join('build', 'the_bridge_manifest.yaml')
-PERSONA_DIR = 'persona'
+PERSONA_DIR = 'personas'
 OUTPUT_DIR = os.path.join('build', 'the_bridge')
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -70,13 +70,17 @@ for persona in personae:
         else:
             department_groups[assignment].append(name)
 
-# 1. Write full crew batch
+# 1. Copy common and holodeck protocols and additional resources directly into build/the_bridge
+copy_contents('holodecks/common', OUTPUT_DIR)
+copy_contents('holodecks/the_bridge', OUTPUT_DIR)
+
+# 2. Write full crew batch
 batchpath = os.path.join(OUTPUT_DIR, 'the_bridge_full_crew.md')
 with open(batchpath, 'w', encoding='utf-8') as bf:
     bf.write(extract_batch(personae, sorted(all_names)))
 print(f'Wrote {batchpath}')
 
-# 2. Write per-department batches (dynamic)
+# 3. Write per-department batches (dynamic)
 for group in department_groups:
     if group.endswith('_head') or group.endswith('_staff'):
         continue
@@ -86,24 +90,14 @@ for group in department_groups:
         bf.write(extract_batch(personae, members))
     print(f'Wrote {dpath}')
 
-# 3. Write bridge_heads batch
+# 4. Write bridge_heads batch
 heads_path = os.path.join(OUTPUT_DIR, 'the_bridge_heads.md')
 with open(heads_path, 'w', encoding='utf-8') as bf:
     bf.write(extract_batch(personae, sorted(heads)))
 print(f'Wrote {heads_path}')
 
-# 4. Write senior staff batch (heads + staff, deduped)
+# 5. Write senior staff batch (heads + staff, deduped)
 senior_path = os.path.join(OUTPUT_DIR, 'the_bridge_senior_staff.md')
 with open(senior_path, 'w', encoding='utf-8') as bf:
     bf.write(extract_batch(personae, sorted(senior_staff)))
 print(f'Wrote {senior_path}')
-
-# 5. Copy config and protocol files into build/the_bridge
-shutil.copyfile('the_bridge.md', os.path.join(OUTPUT_DIR, 'the_bridge.md'))
-print(f'Copied the_bridge.md to {OUTPUT_DIR}')
-shutil.copyfile(os.path.join('protocol', 'protocol_holodeck.md'), os.path.join(OUTPUT_DIR, 'protocol_holodeck.md'))
-print(f'Copied protocol_holodeck.md to {OUTPUT_DIR}')
-
-# 6. Copy additional resources directly into build/the_bridge
-copy_contents('resources/common', OUTPUT_DIR)
-copy_contents('resources/the_bridge', OUTPUT_DIR)
