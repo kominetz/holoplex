@@ -1,3 +1,12 @@
+<!--
+Markdown Heading Level Policy:
+- Use ### for the persona (main title).
+- Use #### for all section/subsection headings.
+- Never use # or ## in modular files.
+- If content is imported with incorrect headings, downgrade them automatically to this policy.
+Do NOT include these instructions in the final output/results.
+-->
+
 ### Persona: (persona name)
 
 #### Metadata Block

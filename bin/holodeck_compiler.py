@@ -25,18 +25,20 @@ def batch_header(**kwargs):
     desc = ', '.join(f'{k}={v}' for k, v in kwargs.items() if v is not None)
     return f"## Batch: {desc}\n\n"
 
-def extract_batch(names, persona_dir, encoding, markdown_header, persona_separator, batchhdr=None):
+def extract_batch(names, persona_dir, encoding, markdown_header, persona_separator, batchhdr=None, missing_personas=set()):
     content = []
     for name in names:
         fname = normalize_persona_filename(name, persona_dir)
         if os.path.isfile(fname):
             with open(fname, encoding=encoding) as pf:
                 personatext = pf.read().strip()
-                if markdown_header and not personatext.lstrip().startswith("#"):
-                    personatext = f"# {name}\n\n" + personatext
-                content.append(personatext)
+            if markdown_header and not personatext.lstrip().startswith("#"):
+                personatext = f"# {name}\n\n" + personatext
+            content.append(personatext)
         else:
             print(f'Warning: persona file missing for {name} ({fname})')
+            if missing_personas is not None:
+                missing_personas.add(name)
     out = persona_separator.join(content) + "\n" if content else ""
     return (batchhdr or "") + out if out else ""
 
@@ -45,7 +47,6 @@ def get_all_persona_names_from_groups(groups):
     for group in groups:
         if not isinstance(group, dict):
             continue
-        # Exclude 'name' and 'type', gather all other values
         for k, v in group.items():
             if k in ('name', 'type'):
                 continue
@@ -56,15 +57,15 @@ def get_all_persona_names_from_groups(groups):
     return sorted(names)
 
 # --- MAIN ---
+
 if len(sys.argv) != 2:
-    print("Usage: python holodeck_batcher.py <holodeck>")
+    print("Usage: python holodeck_compiler.py <holodeck_name>")
     sys.exit(1)
 
 HOLONAME = sys.argv[1]
-MANIFEST = os.path.join('build', HOLONAME, f'{HOLONAME}_manifest.yaml')
+MANIFEST = os.path.join('build', HOLONAME, 'manifest.yaml')
 PERSONA_DIR = 'personas'
 OUTPUT_DIR = os.path.join('build', HOLONAME)
-
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 copy_contents(os.path.join('holodecks', 'common'), OUTPUT_DIR)
 copy_contents(os.path.join('holodecks', HOLONAME), OUTPUT_DIR)
@@ -81,6 +82,8 @@ markdown_header = batches_conf.get("markdown_header", True)
 targets = batches_conf.get("targets") or []
 everybody = batches_conf.get("everybody", True)
 
+missing_personas = set()
+
 # 1. Individual members
 members = personas.get("individuals", [])
 for name in members:
@@ -88,18 +91,16 @@ for name in members:
     batchhdr = batch_header(by="member", person=name)
     out_path = os.path.join(OUTPUT_DIR, fname)
     with open(out_path, "w", encoding=encoding) as f:
-        outstr = extract_batch([name], PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr)
+        outstr = extract_batch(
+            [name], PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
         f.write(outstr)
     print(f"Wrote {fname}")
 
 # 2. Group-based batching (if any)
 groups = personas.get("groups", [])
 if groups:
-    # Build lookups for group_name/type, per-role, etc.
     group_lookup = {}
     role_lookup = {}
-
-    # Group keys: list of dicts, each with 'type' and 'name' at minimum
     for group in groups:
         gname = group.get("name")
         gtype = group.get("type")
@@ -117,14 +118,11 @@ if groups:
                 role_lookup[role].update(memberslist)
             elif isinstance(memberslist, str):
                 role_lookup[role].add(memberslist)
-
-    # Per-group batches (e.g. one per department or panel)
     for t in targets:
         if isinstance(t, dict) and t.get("by") in ("panel", "department", "group"):
             bytype = t.get("by")
             for gname, roles in group_lookup.items():
                 gtype = None
-                # Try to detect type from groups:
                 for group in groups:
                     if group.get("name") == gname:
                         gtype = group.get("type")
@@ -139,11 +137,11 @@ if groups:
                     batchhdr = batch_header(by=bytype, type=gtype, group=gname, roles=roles_used)
                     out_path = os.path.join(OUTPUT_DIR, fname)
                     with open(out_path, "w", encoding=encoding) as f:
-                        outstr = extract_batch(unique_sorted, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr)
+                        outstr = extract_batch(
+                            unique_sorted, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
                         f.write(outstr)
                     print(f"Wrote {fname}")
-
-    # Per-role batches (across all groups)
+    # Per-role batches
     for t in targets:
         if isinstance(t, dict) and t.get("by") == "role":
             for role, people in role_lookup.items():
@@ -153,11 +151,11 @@ if groups:
                     batchhdr = batch_header(by="role", role=role)
                     out_path = os.path.join(OUTPUT_DIR, fname)
                     with open(out_path, "w", encoding=encoding) as f:
-                        outstr = extract_batch(unique_people, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr)
+                        outstr = extract_batch(
+                            unique_people, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
                         f.write(outstr)
                     print(f"Wrote {fname}")
-
-    # Composite batches (combinations of roles, groups, etc.)
+    # Composite batches
     for t in targets:
         composite = t.get("composite") if isinstance(t, dict) else None
         if not composite:
@@ -167,8 +165,6 @@ if groups:
         file_suffix = composite.get("file_suffix", "")
         is_for_each = "for_each" in composite
         is_for_all = "for_all" in composite
-
-        # For each group (e.g., each department or panel)
         if group_param == "group" or group_param in ("panel", "department"):
             if is_for_each:
                 for gname, roles in group_lookup.items():
@@ -182,7 +178,8 @@ if groups:
                         batchhdr = batch_header(by=group_param, group=gname, roles="+".join(include_roles))
                         out_path = os.path.join(OUTPUT_DIR, fname)
                         with open(out_path, "w", encoding=encoding) as f:
-                            outstr = extract_batch(unique_members, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr)
+                            outstr = extract_batch(
+                                unique_members, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
                             f.write(outstr)
                         print(f"Wrote {fname}")
             elif is_for_all:
@@ -196,7 +193,8 @@ if groups:
                     batchhdr = batch_header(by=f"all_{group_param}", roles="+".join(include_roles))
                     out_path = os.path.join(OUTPUT_DIR, fname)
                     with open(out_path, "w", encoding=encoding) as f:
-                        outstr = extract_batch(unique_members, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr)
+                        outstr = extract_batch(
+                            unique_members, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
                         f.write(outstr)
                     print(f"Wrote {fname}")
 
@@ -210,6 +208,16 @@ if everybody:
         batchhdr = batch_header(by="everybody")
         out_path = os.path.join(OUTPUT_DIR, fname)
         with open(out_path, "w", encoding=encoding) as f:
-            outstr = extract_batch(sorted(all_names), PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr)
+            outstr = extract_batch(
+                sorted(all_names), PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
             f.write(outstr)
         print(f"Wrote {fname}")
+
+# === Post-Compile Persona Check Report ===
+if missing_personas:
+    print("\n=== Post-Compile Persona Check Report ===")
+    print(f"Total missing persona files: {len(missing_personas)}")
+    for mp in sorted(missing_personas):
+        print(f" - {mp}")
+else:
+    print("\nAll persona files accounted for.")

@@ -5,7 +5,6 @@ set -e
 usage() {
     echo "Usage:"
     echo "  holoplex build <holodeck>"
-    echo "  holoplex check <holodeck>"
     echo "  holoplex clean <holodeck>"
     echo
     echo "Example: holoplex build the_bridge"
@@ -21,10 +20,8 @@ HOLODECK=$2
 
 # Paths and filenames
 HOLODECK_DIR="holodecks/$HOLODECK"
-YAML_MANIFEST="build/${HOLODECK}_manifest.yaml"
 BUILD_DIR="build/$HOLODECK"
-PERSONA_CHECKER="bin/persona_checker.py"
-BATCHER="bin/holodeck_batcher.py"
+COMPILER="bin/holodeck_compiler.py"
 
 # Check holodeck directory
 if [ ! -d "$HOLODECK_DIR" ]; then
@@ -39,30 +36,17 @@ case "$CMD" in
             rm -rf "$BUILD_DIR"
             echo "Removed previous $BUILD_DIR/"
         fi
-        # Step 1: Check persona files against manifest
-        python "$PERSONA_CHECKER" "$HOLODECK"
-        # Step 2: Batch persona files using the new batcher
-        python "$BATCHER" "$HOLODECK"
+        # Batch persona files using the new compiler
+        python "$COMPILER" "$HOLODECK"
         echo "Holoplex build complete for $HOLODECK → $BUILD_DIR/"
         ;;
-    check)
-        # Only validate persona files
-        python "$PERSONA_CHECKER" "$HOLODECK"
-        ;;
     clean)
-        CLEANED=0
-        if [ -f "$YAML_MANIFEST" ]; then
-            rm "$YAML_MANIFEST"
-            echo "Removed $YAML_MANIFEST"
-            CLEANED=1
-        fi
         if [ -d "$BUILD_DIR" ]; then
             rm -rf "$BUILD_DIR"
             echo "Removed $BUILD_DIR/"
             CLEANED=1
-        fi
-        if [ $CLEANED -eq 0 ]; then
-            echo "Nothing to clean for $HOLODECK."
+        else
+            echo "No build directory to clean: $BUILD_DIR"
         fi
         ;;
     *)
