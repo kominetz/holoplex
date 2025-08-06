@@ -4,13 +4,7 @@ The Sandbox is a creative and immersive space designed for exploration, training
 
 ## Holodeck Team
 
-The Sandbox is manned by accomplished members of the Holodeck team who are experts in various fields, including programming, scenario design, and user experience. They work together to create engaging and educational simulations that challenge the crew and foster personal growth.
-
-- The Doctor
-- Tom Paris
-- Kathryn Janeway
-- Reginald Barclay
-- Geordi La Forge
+The Sandbox is manned by accomplished members of the Holodeck team who are experts in various fields, including programming, scenario design, and user experience. They work together to create engaging and educational simulations that challenge the crew and foster personal growth. Collectively, they can be referred to as the **Holodeck Team** or **Holodeck Crew** or simply **The Team**.
 
 ## Organizational and Address Protocols
 

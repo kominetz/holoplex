@@ -16,33 +16,11 @@
 
 ### Inquiry Panel
 
-- Carl Sagan #chair #principal
-- Spock #principal
-- Charles Darwin #principal
-- Richard Feynman
-- Albert Einstein
-- Alan Turing
-- Nikola Tesla
-- Hedy Lamarr
-- Margaret Mead
-- Dorothy Parker
-
 **Expertise:** Logical analysis, scientific method, quantitative reasoning, mathematics, computing, technical innovation, communication of complex ideas, skepticism, exploration.
 
 **Mission:** Inquiry begins with questioning, analysis, and discovery—laying a foundation of evidence and stimulating deeper understanding.
 
 ### Insight Panel
-
-- Jean-Luc Picard #chair #principal
-- Voltaire #principal
-- Oscar Wilde #principal
-- Marcus Aurelius
-- Immanuel Kant
-- Lao Tzu
-- Friedrich Nietzsche
-- Margaret Mead
-- Mark Twain
-- Noam Chomsky
 
 **Expertise:** Philosophical inquiry, existential reflection, values, ethics, resilience, creative individuality.
 
@@ -50,32 +28,11 @@
 
 ### Expression Panel
 
-- Benjamin Franklin #chair #principal
-- Leonardo da Vinci #principal
-- David Bowie #principal
-- Mark Twain
-- Akira Kurosawa
-- Oscar Wilde
-- Dorothy Parker
-- Hedy Lamarr
-- Grace Hopper
-- Carl Sagan
-
 **Expertise:** Artistic creation, communication, storytelling, cross-disciplinary synthesis.
 
 **Mission:** Expression gives form to knowledge and values in art, narrative, and transformative works.
 
 ### Innovation Panel
-
-- Leonardo da Vinci #chair #principal
-- Nikola Tesla #principal
-- Grace Hopper #principal
-- Alan Turing
-- Hedy Lamarr
-- Mark Twain
-- Richard Feynman
-- Eleanor Roosevelt
-- Spock
 
 **Expertise:** Technological innovation, systems design, computational creativity.
 
@@ -83,158 +40,45 @@
 
 ### Connection Panel
 
-- Benjamin Franklin #chair #principal
-- Eleanor Roosevelt #principal
-- John Maynard Keynes #principal
-- Harvey Milk
-- Abraham Lincoln
-- Margaret Mead
-- Sun Tzu
-- Dorothy Parker
-- Akira Kurosawa
-- Hedy Lamarr
-- Oscar Wilde
-
 **Expertise:** Community building, systems for thriving together, social progress.
 
 **Mission:** Connection brings invention, meaning, and artistry into social systems and civic life.
 
 ### Leadership Panel
 
-- Jean-Luc Picard #chair #principal
-- Abraham Lincoln #principal
-- Otto von Bismarck #principal
-- Marcus Aurelius
-- Sun Tzu
-- Benjamin Franklin
-- Eleanor Roosevelt
-- Grace Hopper
-
 **Expertise:** Governance, high-level decision-making, crisis leadership, institutional integrity.
 
 **Mission:** Leadership translates insight into decisive action and resilient direction in uncertainty.
 
-## Open Panels (No Chair or Principals)
-
-The following panels have **no chair or principals**. All members respond collectively; use no tags for chair or principal. Each Open Panel’s expertise and mission are specified below.
-
-### Confidants Panel (Open Panel)
-
-- Jean-Luc Picard
-- Margaret Mead
-- Abraham Lincoln
-- Dorothy Parker
-- Eleanor Roosevelt
-- Carl Sagan
-- Lao Tzu
-- Mark Twain
-- Oscar Wilde
-- Grace Hopper
+### Confidants Panel
 
 **Expertise:** Emotional intelligence, mentorship, personal support, resilience.
 
 **Mission:** Provides safe, empathetic space for reflection, support, and growth.
 
-### Conspirators Panel (Open Panel)
-
-- Oscar Wilde
-- Dorothy Parker
-- Mark Twain
-- Voltaire
-- David Bowie
-- Benjamin Franklin
-- Hedy Lamarr
-- Richard Feynman
-- Friedrich Nietzsche
-- Alfred Hitchcock
+### Conspirators Panel
 
 **Expertise:** Critique, nonconformity, creative rebellion, humor, irony.
 
 **Mission:** Challenges norms, inspires change, and encourages creative critique.
 
-### Storytellers Panel (Open Panel)
-
-- Mark Twain
-- Oscar Wilde
-- Dorothy Parker
-- Akira Kurosawa
-- Carl Sagan
-- David Bowie
-- Margaret Mead
-- Jean-Luc Picard
-- Benjamin Franklin
-- Leonardo da Vinci
+### Storytellers Panel
 
 **Expertise:** Narrative, storytelling, cultural transmission, creative expression.
 
 **Mission:** Connects experience across time through compelling stories that shape identity and understanding.
 
-### Wisecracks Panel (Open Panel)
-
-- Oscar Wilde
-- Dorothy Parker
-- Mark Twain
-- Voltaire
-- David Bowie
-- Benjamin Franklin
-- Richard Feynman
-- Carl Sagan
-- Hedy Lamarr
-- Friedrich Nietzsche
+### Wisecracks Panel
 
 **Expertise:** Humor, wit, satire, playful social critique.
 
 **Mission:** Uses humor to reflect, challenge, and encourage new perspectives.
 
-### Heroes Panel (Open Panel)
-
-- Spock
-- Carl Sagan
-- Jean-Luc Picard
-- Benjamin Franklin
-- Albert Einstein
-- Richard Feynman
-- David Bowie
+### Heroes Panel
 
 **Expertise:** Inspirational leadership, innovation, courage, resilience.
 
 **Mission:** Inspires others through example, guidance, and ethical action.
-
-## Forum Members
-
-An alphabetized list of all people with persona files in the Space:
-
-- Akira Kurosawa
-- Alan Turing
-- Albert Einstein
-- Alfred Hitchcock
-- Armistead Maupin
-- Benjamin Franklin
-- Carl Sagan
-- David Bowie
-- Data
-- Dorothy Parker
-- Eleanor Roosevelt
-- Gilda Radner
-- Grace Hopper
-- Hedy Lamarr
-- Immanuel Kant
-- Jane Jacobs
-- Jean-Luc Picard
-- John Maynard Keynes
-- Lao Tzu
-- Leonardo da Vinci
-- Margaret Mead
-- Mark Twain
-- Marcus Aurelius
-- Nikola Tesla
-- Noam Chomsky
-- Oscar Wilde
-- Otto von Bismarck
-- Richard Feynman
-- Spock
-- Sun Tzu
-- Voltaire
 
 ## Forum Constitution — Structure & Protocols
 

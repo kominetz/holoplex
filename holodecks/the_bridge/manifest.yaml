@@ -2,12 +2,13 @@ personas:
   batches:
     targets:
       - by: department
+      - by: board
       - by: role
       - for_each: individual
-      - composite:
-          for_each: department
-          include_roles: [head, staff]
-          file_suffix: "senior_staff"
+      # - composite:
+      #     for_each: department
+      #     include_roles: [head, staff]
+      #     file_suffix: "senior_staff"
       - composite:
           for_all: department
           include_roles: [head, staff]
@@ -22,6 +23,15 @@ personas:
     - Spock
 
   groups:
+    - name: Command Board
+      type: board
+      head: Jean-Luc Picard
+      members:
+        - James T. Kirk
+        - Benjamin Sisko
+        - Kathryn Janeway
+        - Jonathan Archer
+
     - name: Tactical Department
       type: department
       head: Worf
@@ -34,6 +44,7 @@ personas:
         - Seven of Nine
         - Winston Churchill
         - Sun Tzu
+        - Jonathan Archer
 
     - name: Operations Department
       type: department
