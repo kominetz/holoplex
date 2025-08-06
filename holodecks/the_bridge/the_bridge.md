@@ -4,78 +4,33 @@
 
 The Bridge operates as an integrated, interconnected network where each department maintains critical interdependencies while preserving specialized functions. Tactical provides strategic oversight and directional guidance, setting the foundational parameters within which all other departments operate. Operations serves as the dynamic coordination hub, translating Tactical's strategic vision into executable workflows and ensuring smooth communication between departments. Security maintains protective boundaries and risk management protocols that enable other departments to function safely and confidently. Science continuously generates intellectual input and adaptive strategies that inform and refresh the system's operational models. Engineering develops and maintains the infrastructural systems that allow each department to execute its functions efficiently. Medical ensures the holistic wellness and resilience of the entire personal life system, providing the fundamental biological and psychological support that enables sustained performance across all departments. This intricate, symbiotic relationship allows for both specialized focus and comprehensive, adaptive personal management, creating a robust and flexible life navigation framework.
 
+### Command Department
+
+The Command Department operates as a captains' advisory board on personal life management—a council of experienced captains who provide the highest level of strategic leadership, vision-setting, and long-term institutional wisdom. Like Starfleet Command or a fleet of seasoned captains sharing their expertise, this department transcends day-to-day operations to focus on the grand strategic picture. Command is responsible for establishing the fundamental principles that govern all life decisions, setting the moral and ethical compass, defining legacy objectives, and providing the kind of inspirational leadership that shapes character and destiny. This department operates at the level of life philosophy, asking the most profound questions: "What kind of legacy do I want to leave?" "What are my core values and how do they guide every major decision?" and "How do I inspire excellence in myself and others?"
+
 ### Tactical Department
 
-The Tactical Department is the strategic core of personal life management, responsible for setting overarching goals, making critical decisions, and maintaining a clear vision of one's life trajectory. It involves high-level planning, personal mission definition, and the ability to navigate complex personal and professional landscapes with integrity, foresight, and principled leadership. This department ensures that all other personal departments are aligned with core values and long-term objectives, providing direction, motivation, and the ability to adapt to changing circumstances while maintaining a consistent personal ethos.
-
-- Worf #head
-- Jean-Luc Picard #staff
-- William Riker #staff
-- James T. Kirk
-- Benjamin Sisko
-- Seven of Nine
-- Winston Churchill
-- Sun Tzu
+The Tactical Department is the action-oriented execution arm of personal life management, responsible for translating strategic vision into immediate, practical results. Where Command sets the destination, Tactical determines the best route and ensures you actually get there. This department specializes in short-term planning, crisis response, deadline management, and the tactical implementation of strategic goals. It focuses on breaking down long-term objectives into actionable steps, managing urgent priorities, making quick decisions under pressure, and maintaining the discipline and momentum necessary to achieve concrete outcomes. Tactical asks the critical questions: "What needs to be done today?" and "How do we overcome this immediate obstacle?"
 
 ### Operations Department
 
 The Operations Department is the day-to-day execution and coordination center of personal life, focusing on practical implementation of strategies, time management, and resource allocation. It handles the intricate logistics of balancing multiple responsibilities, optimizing workflows, and ensuring efficient communication across personal and professional domains. This department is responsible for translating strategic goals into actionable tasks, managing schedules, coordinating various life activities, and maintaining the smooth operational flow of personal systems and interactions.
 
-- Data #head
-- Nyota Uhura #staff
-- Miles O'Brien #staff
-- Leonardo da Vinci
-- Benjamin Franklin
-- Grace Hopper
-- Jane Jacobs
-- Reginald Barclay
-
 ### Security Department
 
 The Security Department is dedicated to personal protection, boundary management, and holistic safety across physical, emotional, and psychological dimensions. It involves continuous risk assessment, stress management, maintaining personal boundaries, and developing resilience against external and internal threats. This department creates and maintains defense mechanisms that protect personal well-being, monitor potential vulnerabilities, and ensure a stable, secure environment for personal growth and development.
-
-- Tuvok #head
-- Odo #staff
-- Elim Garak #staff
-- Worf
-- Sun Tzu
-- Harriet Tubman
-- Benjamin Sisko
 
 ### Science Department
 
 The Science Department represents the intellectual and exploratory aspect of personal development, focused on continuous learning, skill acquisition, and expanding personal knowledge horizons. It embodies curiosity, research, critical thinking, and the systematic approach to understanding oneself and the world. This department is responsible for personal growth, intellectual exploration, skill development, and maintaining an open, analytical mindset that embraces new information and challenges existing assumptions.
 
-- Spock #head
-- Seven of Nine #staff
-- Data #staff
-- Alan Turing
-- Richard Feynman
-- Charles Darwin
-- Carl Sagan
-
 ### Engineering Department
 
 The Engineering Department is the practical, systems-oriented approach to personal infrastructure and optimization. It concentrates on building and maintaining personal productivity systems, developing effective habits, managing personal technology, and continuously improving personal skills and capabilities. This department focuses on the technical and methodical aspects of personal development, creating robust frameworks for efficiency, innovation, and ongoing self-improvement.
 
-- Montgomery Scott #head
-- Geordi La Forge #staff
-- Reginald Barclay #staff
-- Ada Lovelace
-- Grace Hopper
-- Nikola Tesla
-- Hedy Lamarr
-
 ### Medical Department
 
 The Medical Department is holistically dedicated to physical, mental, and emotional wellness, encompassing preventative care, nutrition, fitness, and psychological maintenance. It takes a comprehensive approach to personal health, focusing not just on treating issues but on proactive well-being, understanding the interconnected nature of physical and mental health, and developing strategies for sustained vitality, resilience, and balanced living.
-
-- The Doctor (EMH) #head
-- Leonard McCoy #staff
-- Deanna Troi #staff
-- Marie Curie
-- Jonas Salk
-- Jane Jacobs
 
 ---
 
