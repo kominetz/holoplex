@@ -18,7 +18,7 @@
 - Add new holodeck directories under `holodecks/` for new simulation environments.
 - Each holodeck directory should contain its manifest file (e.g., `holodeck_name.md`) and any specific resources.
 - Add or update files in `holodecks/common/` to have them included in all builds.
-- Place readmes, style guides, or scenario-specific assets in the holodeck directories—never in the personas directories.assignments.
+- Place readmes, style guides, or scenario-specific assets in the holodeck directories—never in the personas directories.
 - Automated validation, manifest generation, and batch file building.
 - Flexible resource inclusion for each build or simulation context.
 
