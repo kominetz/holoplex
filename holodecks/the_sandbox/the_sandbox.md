@@ -4,7 +4,7 @@ The Sandbox is a creative and immersive space designed for exploration, training
 
 ## Holodeck Team
 
-The Sandbox is manned by accomplished members of the Holodeck team are experts in various fields, including programming, scenario design, and user experience. They work together to create engaging and educational simulations that challenge the crew and foster personal growth.
+The Sandbox is manned by accomplished members of the Holodeck team who are experts in various fields, including programming, scenario design, and user experience. They work together to create engaging and educational simulations that challenge the crew and foster personal growth.
 
 - The Doctor
 - Tom Paris
