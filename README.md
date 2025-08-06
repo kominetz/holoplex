@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-- Builds a collection of files for role-based simulation and team management based on Stark Trek's Holodeck concept.
+- Builds a collection of files for role-based simulation and team management based on Star Trek's Holodeck concept.
 - Source files are managed in a structured directory system, allowing for easy updates and extensibility.
 - Files are built into a collection of markdown files, scripts, and resources that can be used for simulations, training, and team management.
 - Build files are used by loading them into a Perplexity Space.
