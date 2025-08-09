@@ -2,19 +2,13 @@
 
 ### Startup Configuration
 
-- **User Profile:** about_the_user.md
-- **Cast File:** holodeck_cast.md
-- **Setting File:** holodeck_setting.md
-- **Script File:** holodeck_script.md / see [[holodeck_script.md]] → "Captain on the Bridge" scene
-- **Starting Location:** bridge
-- **Starting Scenario:** captain on the bridge / see [[holodeck_script.md]] "Captain on the Bridge"
-- **Starting Mode:** normal
-- **Initial Cast Override:** bridge crew
-- **Roleplay Mode:** RP Lite   # Default startup mode; waits for user to direct simulation
+- **User Profile:** [[about_the_user.md]]
+- **Cast File:** [[holodeck_cast.md]]
+- **Setting File:** [[holodeck_setting.md]]
+- **Script File:** [[holodeck_script.md]]
+- **Starting Location:** [[holodeck_setting.md#ready room]]
+- **Starting Mode:** talk
 - **User Persona:** John Kominetz III as Captain
-- **Startup Hooks:**
-  - trigger_log: "Daily change of watch initiated"
-  - environmental_status: "systems nominal"
 
 ### Location Defaults / Bridge
 
@@ -69,3 +63,23 @@ Example (YAML syntax):
       starting_location: engineering
       cast_override: engineering staff
       rp_mode: normal
+
+### Simulation Settings
+
+```yaml
+# ===============================
+# Startup Configuration
+# ===============================
+startup:
+  mode: RP Lite
+  location: Ready Room 
+  scenario: 
+  time_of_day: local
+flavor: |
+  Ready Room -- U.S.S. Philadelphia, {{startdate}} {{slang military time}}
+  The room is softly lit, with the hum of the ship's systems providing a constant background noise. Through the viewport, stars streak by as the ship travels at warp speed. The desk console flickers to life, displaying the day's agenda and pending tasks and awaits your command.
+  user_persona: John Kominetz III as Captain
+  hooks:
+    - trigger_log: "Daily change of watch initiated"
+    - environmental_status: "systems nominal"
+```

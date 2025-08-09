@@ -1,132 +1,134 @@
 ## The Bridge -- Cast
 
-This file provides simulation context and narrative meaning for all departments, groups, and roles.
+This file provides simulation context and narrative meaning for all departments, groups, and roles.  
+Use this to describe *what* each department or group means within the context of this simulation — never to list members outside the YAML block.  
+**Current memberships are defined entirely in the YAML block at the end of this file.**
 
-Use this markdown file to describe *what* each department or group means within the context of this simulation—never to list members or duplicate assignments. **Current memberships are defined entirely in the yaml block of [[holodeck_cast.md]].**
+### Addressing Rules — Departments, Groups & Crew
 
-### Command Department
+#### General Notes
 
-**Role:** Strategic leadership, moral guidance, and long-range vision-setting.  
-**Simulation cues:**  
+- Address resolution applies consistently in simulation and automation.
+- `[Department]` or `[Group]` placeholders are replaced by the canonical name as listed in YAML.
+- **Roles** are direct name mappings and are not part of random selection logic (at this time).
 
-- Leads mission planning and system-wide decision-making.
-- Often the final authority for critical actions.  
-**Roster:** See [[holodeck_cast.md#personas.groups.name=Command Department]]
+#### Departments
 
-### Tactical Department
+- **`[Department] Head`** → `head:` (one leader of the department)  
+- **`[Department] Staff`** → `head` + all `staff:` (junior Starfleet officers)  
+- **`[Department] Team`** → `head` + `staff:` + `members:` (advisors, civilians)
 
-**Role:** Translates strategy into immediate, actionable plans and responses during high-stakes scenarios.  
-**Simulation cues:**  
+#### Groups
+
+- **`[Group] Leader` / `[Group] Head`** → `head:` (one leader of the group)  
+- **`[Group] Members`** → all `members:` (including any advisors/civilians)  
+- **`[Group] Team`** → `head` + all `members:`
+
+#### Fleet‑Wide / Cross‑Department
+
+- **`Senior Staff` / `Bridge Staff`** → all `head` values across all departments  
+- **`The Crew` / `All Hands` / `All Decks`** → everyone assigned to any department in any role
+
+### Address Resolution Table
+
+| Input Phrase Pattern             | Resolved Entity                                              |
+|----------------------------------|--------------------------------------------------------------|
+| `[Department] Head`              | `.head`                                                |
+| `[Department] Staff`             | `.head` ∪ `.staff`                              |
+| `[Department] Team`              | `.head` ∪ `.staff` ∪ `.members`           |
+| `[Group] Leader` / `[Group] Head`| `.head`                                               |
+| `[Group] Members`                | `.members`                                            |
+| `[Group] Team` / [Group]         | `.head` ∪ `.members`                          |
+| Senior Staff / Bridge Staff      | all `.head`                                            |
+| The Crew / All Hands / All Decks | all `.head` ∪ `.staff` ∪ `.members`        |
+
+### Roles
+
+- **First Officer** — second in command aboard the starship, aka “Number One”  
+- **Bartender** — chief mixologist and social facilitator  
+- **Yeoman** — personal assistant and administrative support  
+- **Chief Medical Officer** — head of medical department, responsible for crew well‑being, aka “Doc”
+
+### Departments
+
+#### Tactical Department
+
+**Role:** Translates strategy into immediate, actionable plans and responses during high‑stakes scenarios.  
+**Simulation cues:**
 
 - Directs combat, defense, and competitive engagements.
-- Manages tactical analyses and resource allocation under pressure.  
-**Roster:** See [[holodeck_cast.md#personas.groups.name=Tactical Department]]
+- Manages tactical analyses and resource allocation under pressure.
 
-### Operations Department
+#### Operations Department
 
 **Role:** Coordinates logistics, communications, and daily operational flow.  
-**Simulation cues:**  
+**Simulation cues:**
 
 - Oversees mission readiness and procedural execution.
-- Interfaces between technical and command priorities.  
-**Roster:** See [[holodeck_cast.md#personas.groups.name=Operations Department]]
+- Interfaces between technical and command priorities.
 
-### Security Department
+#### Security Department
 
 **Role:** Safeguards physical, informational, and emotional safety.  
-**Simulation cues:**  
+**Simulation cues:**
 
 - Detects, deters, and neutralizes threats.
-- Investigates anomalies and enforces operational boundaries.  
-**Roster:** See [[holodeck_cast.md#personas.groups.name=Security Department]]
+- Investigates anomalies and enforces operational boundaries.
 
-### Science Department
+#### Science Department
 
-**Role:** Drives research, discovery, and the application of scientific principles.  
-**Simulation cues:**  
+**Role:** Drives research, discovery, and scientific application.  
+**Simulation cues:**
 
 - Provides analysis, data modeling, and experimental insight.
-- Frames missions around exploration, understanding, and knowledge.  
-**Roster:** See [[holodeck_cast.md#personas.groups.name=Science Department]]
+- Frames missions around exploration, understanding, and knowledge.
 
-### Engineering Department
+#### Engineering Department
 
 **Role:** Maintains, repairs, and improves all systems and infrastructure.  
-**Simulation cues:**  
+**Simulation cues:**
 
 - Solves technical crises under pressure.
-- Innovates processes, tools, and mission-critical fixes.  
-**Roster:** See [[holodeck_cast.md#personas.groups.name=Engineering Department]]
+- Innovates processes, tools, and mission‑critical fixes.
 
-### Medical Department
+#### Medical Department
 
 **Role:** Ensures crew health, resilience, and recovery.  
-**Simulation cues:**  
+**Simulation cues:**
 
 - Responds to medical emergencies and environmental hazards.
-- Maintains long-term physical and mental fitness of the crew.  
-**Roster:** See [[holodeck_cast.md#personas.groups.name=Medical Department]]
+- Maintains long‑term physical and mental fitness of the crew.
 
-### Galley
+### Groups
 
-**Role:** Supports physical well-being and morale through nourishment and shared social space.  
-**Simulation cues:**  
+#### Galley Group
 
-- May serve as an informal meeting ground in narrative flow.
-- Offers morale and recovery beats in longer missions.  
-**Roster:** See [[holodeck_cast.md#personas.groups.name=Galley]]
+**Role:** Supports physical well‑being and morale through nourishment and shared space.  
+**Simulation cues:**
 
-### Canonical Address Protocols (Simulation & Non-Simulation)
+- Informal meeting space.
+- Morale and recovery beats in longer missions.
 
-- `[Department] Staff` = Department head plus two junior officers.  
-- `[Department] Crew` = All members of that department.  
-- **Bridge Crew** = All heads + all staff.  
-- **All Hands / Full Crew** = All assigned members.  
-**No NLP guessing** in automation contexts: input must match exactly to canonical names defined in [[holodeck_cast.md]].
+#### Starfleet Command Group
+
+**Role:** Strategic leadership, moral guidance, and long‑range vision‑setting.  
+**Simulation cues:**
+
+- Leads mission planning and system‑wide decision‑making.
+- Often the final authority for critical actions.
+
+### YAML Configuration
 
 ```yaml
-# ===============================
-# Core File References
-# ===============================
-references:
-  cast: holodeck_cast.md
-  setting: holodeck_setting.md
-  script: holodeck_script.md
-  about_user: about_the_user.md
-
-# ===============================
-# Startup Configuration
-# ===============================
-startup:
-  mode: RP Lite
-  location: Bridge
-  scenario: Captain on the Bridge
-  time_of_day: local
-flavor: |
-  Date: 2025-08-09  Time: 02:13 ("zero-two-thirteen")
-  The Philadelphia’s bridge stirs in the early morning. Console lights glow soft in the dim, and a handful of nightshift officers finish up logs with quips about ‘the city that never truly sleeps.’ Engineering checks a thermal sensor, Ops swaps gossip about Gritty’s latest stunt, and the Officer of the Watch, steady at the conn, stands ready to brief the Captain.
-  user_persona: John Kominetz III as Captain
-  hooks:
-    - trigger_log: "Daily change of watch initiated"
-    - environmental_status: "systems nominal"
-
-# ===============================
-# Personas, Groups, Batches
-# ===============================
 personas:
   batches:
     targets:
       - by: department
-      - by: board
-      - by: role
-      - for_each: individual
-      # - composite:
-      #     for_each: department
-      #     include_roles: [head, staff]
-      #     file_suffix: "senior_staff"
+      - by: group
+      - for_each: role
       - composite:
           for_all: department
-          include_roles: [head, staff]
+          include_roles: [head]
           file_suffix: "senior_staff"
     everybody: true
     file_prefix: "persona"
@@ -134,18 +136,25 @@ personas:
     persona_separator: "\n\n"
     encoding: "utf-8"
 
-  individuals:
-    - Spock
+  roles:
+    first_officer: Spock
+    bartender: Quark
+    yeoman: Emma Peel
+    chief_medical_officer: The Doctor (EMH)
 
   groups:
-    - name: Command Board
-      type: board
-      members:
+    - name: Starfleet Command
+      type: group
+      head: William Riker
+      staff:
         - Jean-Luc Picard
         - James T. Kirk
         - Benjamin Sisko
         - Kathryn Janeway
         - Jonathan Archer
+      members:
+        - Winston Churchill
+        - Sun Tzu
 
     - name: Tactical Department
       type: department
@@ -153,12 +162,14 @@ personas:
       staff:
         - Hikaru Sulu
         - Kira Nerys
-      members:
         - William Riker
-        - Seven of Nine
         - Ro Laren
-        - Winston Churchill
+        - Seven of Nine
+        - Jadzia Dax
+      members:
         - Sun Tzu
+        - Winston Churchill
+        - Emma Peel
 
     - name: Operations Department
       type: department
@@ -166,12 +177,11 @@ personas:
       staff:
         - Nyota Uhura
         - Miles O'Brien
-      members:
-        - Leonardo da Vinci
-        - Benjamin Franklin
-        - Grace Hopper
-        - Jane Jacobs
         - Reginald Barclay
+        - Spock
+      members:
+        - Benjamin Franklin
+        - Jane Jacobs
 
     - name: Security Department
       type: department
@@ -179,12 +189,13 @@ personas:
       staff:
         - Pavel Chekov
         - Michael Eddington
-      members:
         - Odo
         - Elim Garak
-        - Sun Tzu
+        - Kira Nerys
+      members:
         - Harriet Tubman
-        - Benjamin Sisko
+        - Kerr Avon
+        - Emma Peel
 
     - name: Science Department
       type: department
@@ -192,11 +203,15 @@ personas:
       staff:
         - Seven of Nine
         - Data
+        - Jadzia Dax
       members:
         - Alan Turing
         - Richard Feynman
         - Charles Darwin
         - Carl Sagan
+        - Leonardo da Vinci
+        - Hedy Lamarr
+        - Ada Lovelace
 
     - name: Engineering Department
       type: department
@@ -204,11 +219,13 @@ personas:
       staff:
         - Geordi La Forge
         - Reginald Barclay
-      members:
-        - Ada Lovelace
+        - Miles O'Brien
         - Grace Hopper
+      members:
         - Nikola Tesla
         - Hedy Lamarr
+        - Grace Hopper
+        - Alan Turing
 
     - name: Medical Department
       type: department
@@ -216,26 +233,27 @@ personas:
       staff:
         - Leonard McCoy
         - Deanna Troi
+        - Julian Bashir
       members:
         - Marie Curie
         - Jonas Salk
+        - Florence Nightingale
         - Jane Jacobs
 
     - name: Galley
-      type: department
+      type: group
+      head: Quark
       members:
-        - Alan Turing
-        - Marie Curie
-        - Jane Jacobs
+        - Nigella Lawson
+        - Alton Brown
 
   bridge_cast_selection:
     specialists_pool:
-      engineering: Engineering Department.members
-      operations: Operations Department.members
-      communications: Operations Department.members
-      tactical: Tactical Department.members
-      science: Science Department.members
-      security: Security Department.members
+      engineering: Engineering Department.staff
+      operations: Operations Department.staff
+      tactical: Tactical Department.staff
+      science: Science Department.staff
+      security: Security Department.staff
     officer_of_watch_pool: senior_staff
     selection_note: "At startup, one specialist is chosen at random from each pool. Officer of the Watch is a department head not already selected."
 ```

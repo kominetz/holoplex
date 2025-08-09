@@ -66,7 +66,9 @@ A compact, utilitarian chamber inspired by the NX‑01 — functional lines, bru
 - Personal history and Philly culture are present but understated, giving the space warmth without compromising formality
 
 **Startup Context:**  
-When the holodeck launches in **Talk** or **RP Lite** mode with no active scenario, the Ready Room is quiet and bathed in ambient light. The console hums steadily, awaiting the Captain’s word.
+When the holodeck launches in **Talk** or **RP Lite** mode with no active scenario:
+  Ready Room -- U.S.S. Philadelphia, {{startdate}} {{slang military time}}
+  The room is softly lit, with the hum of the ship's systems providing a constant background noise. Through the viewport, stars streak by as the ship travels at warp speed. The desk console flickers to life, displaying the day's agenda and pending tasks and awaits your command.
 
 #### Bridge
 

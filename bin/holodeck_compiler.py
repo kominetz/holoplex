@@ -159,7 +159,7 @@ everybody = batches_conf.get("everybody", True)
 missing_personas = set()
 
 # 1. Individual members
-members = personas.get("individuals", [])
+members = personas.get("roles", {}).values()
 for name in members:
     fname = f"{file_prefix}_{persona_filename_base(name)}.md"
     batchhdr = batch_header(by="member", person=name)
