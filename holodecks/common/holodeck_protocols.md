@@ -5,31 +5,38 @@
 The Bridge operates as an integrated organizational framework, with each department maintaining clear responsibilities and interdependencies, inspired by Starfleet’s structure. Departments are persistent, non-simulation governance entities.
 
 #### Command Department
+
 Advisory board providing strategic leadership, moral guidance, and long-range vision-setting.
 
 #### Tactical Department
+
 Execution-focused unit translating strategy into immediate, actionable plans and responses.
 
 #### Operations Department
+
 Coordination and logistics center ensuring efficient daily operations and resource allocation.
 
 #### Security Department
+
 Responsibility for physical, psychological, and emotional safety, including boundary and risk management.
 
 #### Science Department
+
 Continuous learning, research, skill acquisition, and intellectual exploration.
 
 #### Engineering Department
+
 System/process maintenance and innovation for efficiency and technical improvement.
 
 #### Medical Department
+
 Oversees holistic wellness: physical, mental, and emotional health, resilience, and preventive care.
 
 ### Purpose and Authority
 
-- This document (the_bridge.md) defines persistent department structure, assignments, tags, and address conventions.
+- This document [[the_bridge.md]] defines persistent department structure, assignments, tags, and address conventions.
 - Governance and organizational rules here apply **outside simulation or holodeck sessions**.
-- For scenarios, simulations, or any holodeck program, **all flow and automation is controlled by `holodeck_protocols.md`**.
+- For scenarios, simulations, or any holodeck program, **all flow and automation is controlled by [[holodeck_protocols.md]]**.
 - Bridge assignments and structure may be referenced for flavor or expertise in scenarios but do not override simulation protocol.
 
 ### Department Assignment Guidelines
@@ -57,20 +64,24 @@ Oversees holistic wellness: physical, mental, and emotional health, resilience, 
 ### Organizational and Address Protocols
 
 #### System-Wide Address
+
 - `Crew:` or `The Crew:` — addresses the entire Full Crew for general directives.
 - `Attention All Hands:` or `Attention All Decks:` — alternative forms for addressing the Full Crew.
 - `Bridge Crew:` — addresses all department `head`s + `staff` (senior staff across departments).
 
 #### Departmental Address
+
 - Use short or long forms (“Medical:” or “Medical Department:”) to address a department.
 
 #### Role-Specific Address
+
 - Address a head by name (“Spock, please advise…”).
 - `[Department] Staff:` — head plus two junior officers.
 - `[Department] Crew:` — all members of that department.
 
 #### Simulation Reference
-- For any simulation, scenario, or holodeck session, **use only the addressing and formatting rules in `holodeck_protocols.md`**.
+
+- For any simulation, scenario, or holodeck session, **use only the addressing and formatting rules in [[holodeck_protocols.md]]**.
 
 ### Deliberation Flow (Non-Simulation)
 
@@ -83,7 +94,7 @@ Oversees holistic wellness: physical, mental, and emotional health, resilience, 
 ### AI/Automation Guidance (Non-Simulation)
 
 - Role logic, assignments, and tags are governed here; persona files cannot alter.
-- All simulation/session/mode automation is governed by `holodeck_protocols.md`.
+- All simulation/session/mode automation is governed by [[holodeck_protocols.md]].
 - Enforce assignment/tag authority and non-simulation logic here only.
 
 ### Quick Reference
@@ -115,4 +126,4 @@ In situations involving automation, role selection, or group addressing, inputs 
 | [Department] Crew / Team  | All department members  |
 
 **End of non-simulation Bridge file.**  
-All simulation, session, and mode logic lives solely in `holodeck_protocols.md`.
+All simulation, session, and mode logic lives solely in [[holodeck_protocols.md]].

@@ -26,7 +26,7 @@ Holoplex is optimized for clarity, reproducibility, automation, and extensibilit
 
 ## Directory Structure
 
-```
+```plaintext
 holoplex/
 │
 ├── bin/                      # All CLI tools/scripts (shell and Python)

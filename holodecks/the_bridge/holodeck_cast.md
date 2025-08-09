@@ -82,7 +82,7 @@ Use this markdown file to describe *what* each department or group means within 
 - `[Department] Crew` = All members of that department.  
 - **Bridge Crew** = All heads + all staff.  
 - **All Hands / Full Crew** = All assigned members.  
-**No NLP guessing** in automation contexts: input must match exactly to canonical names defined in `holodeck_cast.md`.
+**No NLP guessing** in automation contexts: input must match exactly to canonical names defined in [[holodeck_cast.md]].
 
 ```yaml
 # ===============================
