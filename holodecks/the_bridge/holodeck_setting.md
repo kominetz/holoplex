@@ -87,3 +87,24 @@ Located adjacent to the Bridge—used for mission planning, briefings, and after
 - Galley
 - Space Bar (social lounge)
 - Holodeck
+
+### YAML Location Configuration Data
+
+```yaml
+locations:
+  bridge:
+    on_enter: execute bridge_cast_selection
+    starting_cast: locations.bridge_cast_selection
+    starting_mode: Talk
+    starting_time: local
+
+  bridge_cast_selection:
+    specialists_pool:
+      engineering: Engineering Department.staff
+      operations: Operations Department.staff
+      tactical: Tactical Department.staff
+      science: Science Department.staff
+      security: Security Department.staff
+    officer_of_watch_pool: senior_staff
+    selection_instruction: "At startup, one specialist is chosen at random from each pool. Officer of the Watch is a department head not already selected. The operations officer handles communication; there is no separate comms officer."
+```

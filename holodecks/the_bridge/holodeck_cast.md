@@ -246,14 +246,4 @@ personas:
       members:
         - Nigella Lawson
         - Alton Brown
-
-  bridge_cast_selection:
-    specialists_pool:
-      engineering: Engineering Department.staff
-      operations: Operations Department.staff
-      tactical: Tactical Department.staff
-      science: Science Department.staff
-      security: Security Department.staff
-    officer_of_watch_pool: senior_staff
-    selection_note: "At startup, one specialist is chosen at random from each pool. Officer of the Watch is a department head not already selected."
 ```
