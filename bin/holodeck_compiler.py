@@ -1,8 +1,70 @@
+import datetime
 import os
-import yaml
 import re
 import sys
 import shutil
+import yaml
+
+def build_full_file(holoname, output_dir):
+    """
+    Assemble a single markdown file (parse-first style):
+    - holodeck_protocols.md first
+    - Each imported file bracketed by '## START: filename' / '## END: filename'
+    - Ends with Everybody persona batch
+    - Content normalization: replace lone '---' lines with blank lines for Markdown safety
+    """
+    full_filename = f"{holoname}_full.md"
+    full_path = os.path.join(output_dir, full_filename)
+
+    # ✅ Core files in exact order (protocols first)
+    core_files = [
+        "holodeck_protocols.md",
+        "the_bridge.md",
+        "holodeck_cast.md",
+        "holodeck_setting.md",
+        "holodeck_script.md"
+    ]
+
+    everybody_file = "persona_everybody.md"
+    everybody_path = os.path.join(output_dir, everybody_file)
+
+    created_on = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S %Z")
+
+    def sanitize_separators(text: str) -> str:
+        """Replace standalone '---' lines with a blank line to avoid MD misparse."""
+        return re.sub(r"(?m)^\s*---\s*$", "", text)
+
+    with open(full_path, "w", encoding="utf-8") as out:
+        # File heading
+        out.write(f"# {full_filename}\n\n")
+        out.write(f"**Created on:** {created_on}\n\n")
+
+        # Core file sections
+        for fname in core_files:
+            fpath = os.path.join(output_dir, fname)
+            out.write(f"## START: {fname}\n")
+            if os.path.isfile(fpath):
+                with open(fpath, "r", encoding="utf-8") as coref:
+                    contents = sanitize_separators(coref.read().strip())
+                    out.write(contents)
+                    out.write("\n")
+            else:
+                out.write(f"*Missing file: {fname}*\n")
+            out.write(f"## END: {fname}\n\n")
+
+        # Everybody section
+        out.write(f"## START: {everybody_file}\n")
+        out.write("## Personas -- Everybody\n\n")
+        if os.path.isfile(everybody_path):
+            with open(everybody_path, "r", encoding="utf-8") as ef:
+                contents = sanitize_separators(ef.read().strip())
+                out.write(contents)
+                out.write("\n")
+        else:
+            out.write("*Missing 'Everybody' persona file*\n")
+        out.write(f"## END: {everybody_file}\n")
+
+    print(f"Wrote parse-friendly single file: {full_filename}")
 
 def copy_contents(src_dir, dest_dir):
     if not os.path.isdir(src_dir):
@@ -32,9 +94,9 @@ def extract_batch(names, persona_dir, encoding, markdown_header, persona_separat
         if os.path.isfile(fname):
             with open(fname, encoding=encoding) as pf:
                 personatext = pf.read().strip()
-            if markdown_header and not personatext.lstrip().startswith("#"):
-                personatext = f"# {name}\n\n" + personatext
-            content.append(personatext)
+                if markdown_header and not personatext.lstrip().startswith("#"):
+                    personatext = f"# {name}\n\n" + personatext
+                content.append(personatext)
         else:
             print(f'Warning: persona file missing for {name} ({fname})')
             if missing_personas is not None:
@@ -56,6 +118,17 @@ def get_all_persona_names_from_groups(groups):
                 names.add(v)
     return sorted(names)
 
+def extract_yaml_from_md(filename):
+    print(f"Extracting YAML from {filename}")
+    with open(filename, "r", encoding="utf-8") as f:
+        content = f.read()
+        # Extract the first YAML fenced code block
+        match = re.search(r'```yaml\s*\n(.*?)\n```', content, re.IGNORECASE | re.DOTALL)
+        if not match:
+            raise ValueError(f"No YAML code block found in {filename}")
+        yaml_str = match.group(1)
+        return yaml.safe_load(yaml_str)
+
 # --- MAIN ---
 
 if len(sys.argv) != 2:
@@ -63,29 +136,30 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 HOLONAME = sys.argv[1]
-MANIFEST = os.path.join('build', HOLONAME, 'manifest.yaml')
+BUILD_DIR = os.path.join('build', HOLONAME)
 PERSONA_DIR = 'personas'
-OUTPUT_DIR = os.path.join('build', HOLONAME)
+OUTPUT_DIR = BUILD_DIR
+
 os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 copy_contents(os.path.join('holodecks', 'common'), OUTPUT_DIR)
 copy_contents(os.path.join('holodecks', HOLONAME), OUTPUT_DIR)
-
-with open(MANIFEST, "r", encoding="utf-8") as f:
-    manifest = yaml.safe_load(f)
+MANIFEST = os.path.join(BUILD_DIR, 'holodeck_cast.md')
+manifest = extract_yaml_from_md(MANIFEST)
 
 personas = manifest.get("personas", {})
 batches_conf = personas.get("batches", {})
+
 file_prefix = batches_conf.get("file_prefix", HOLONAME)
-persona_separator = batches_conf.get("persona_separator", "\n---\n")
+persona_separator = batches_conf.get("persona_separator", "\n\n")
 encoding = batches_conf.get("encoding", "utf-8")
 markdown_header = batches_conf.get("markdown_header", True)
 targets = batches_conf.get("targets") or []
 everybody = batches_conf.get("everybody", True)
-
 missing_personas = set()
 
 # 1. Individual members
-members = personas.get("individuals", [])
+members = personas.get("roles", {}).values()
 for name in members:
     fname = f"{file_prefix}_{persona_filename_base(name)}.md"
     batchhdr = batch_header(by="member", person=name)
@@ -118,6 +192,7 @@ if groups:
                 role_lookup[role].update(memberslist)
             elif isinstance(memberslist, str):
                 role_lookup[role].add(memberslist)
+
     for t in targets:
         if isinstance(t, dict) and t.get("by") in ("panel", "department", "group"):
             bytype = t.get("by")
@@ -141,6 +216,7 @@ if groups:
                             unique_sorted, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
                         f.write(outstr)
                     print(f"Wrote {fname}")
+
     # Per-role batches
     for t in targets:
         if isinstance(t, dict) and t.get("by") == "role":
@@ -155,6 +231,7 @@ if groups:
                             unique_people, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
                         f.write(outstr)
                     print(f"Wrote {fname}")
+
     # Composite batches
     for t in targets:
         composite = t.get("composite") if isinstance(t, dict) else None
@@ -165,6 +242,7 @@ if groups:
         file_suffix = composite.get("file_suffix", "")
         is_for_each = "for_each" in composite
         is_for_all = "for_all" in composite
+
         if group_param == "group" or group_param in ("panel", "department"):
             if is_for_each:
                 for gname, roles in group_lookup.items():
@@ -213,7 +291,11 @@ if everybody:
             f.write(outstr)
         print(f"Wrote {fname}")
 
+# --- At end of main (after persona batches), call:
+build_full_file(HOLONAME, OUTPUT_DIR)
+
 # === Post-Compile Persona Check Report ===
+
 if missing_personas:
     print("\n=== Post-Compile Persona Check Report ===")
     print(f"Total missing persona files: {len(missing_personas)}")

@@ -22,12 +22,11 @@
 - Automated validation, manifest generation, and batch file building.
 - Flexible resource inclusion for each build or simulation context.
 
-
 Holoplex is optimized for clarity, reproducibility, automation, and extensibility—suitable for everything from role-based simulation to real-world team scenario planning.
 
 ## Directory Structure
 
-```
+```plaintext
 holoplex/
 │
 ├── bin/                      # All CLI tools/scripts (shell and Python)
@@ -46,7 +45,7 @@ holoplex/
 │   ├── common/               # Templates, images, or files shared by all builds
 │   │   ├── about_me.md
 │   │   ├── about_me_template.md
-│   │   └── protocol_holodeck.md  # Simulation/persona protocol reference
+│   │   └── holodeck_protocols.md  # Simulation/persona protocol reference
 │   ├── templates/            # Templates, images, or files manually copied into new holodecks
 │   ├── the_bridge/           # Bridge-specific resources (docs, config, data, etc.)
 │   │   ├── README.md
@@ -108,21 +107,27 @@ holoplex/
    Place any needed supplementary files in `holodecks/the_bridge/` or `holodecks/common/` before building.
 
 4. **Build:**  
+
    ```bash
    bin/holoplex build the_bridge
    ```
+
    - Cleans prior output, validates, extracts manifest, batches persona files, copies holodecks resources.
 
 5. **Check:**  
+
    ```bash
    bin/holoplex check the_bridge
    ```
+
    - Validates manifest and persona file presence but does not batch or copy anything.
 
 6. **Clean:**  
+
    ```bash
    bin/holoplex clean the_bridge
    ```
+
    - Removes all build artifacts (including resources and manifest) for the group.
 
 ## Key Features
@@ -139,7 +144,7 @@ holoplex/
 
 ## Support
 
-- See `holodecks/common/protocol_holodeck.md` for simulation/persona standards.
+- See `holodecks/common/holodeck_protocols.md` for simulation/persona standards.
 - For trouble or enhancements, review log output from the Python and shell scripts—clear explanations and warnings are provided.
 
 **Holoplex:** Advanced simulation and team management—structured, reproducible, and ready for any mission. Now with integrated resource support!
