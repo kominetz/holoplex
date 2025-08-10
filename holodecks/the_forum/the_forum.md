@@ -82,17 +82,17 @@
 
 ## Forum Constitution — Structure & Protocols
 
-Certainly! Here is a suggested rewrite for **Section I. Purpose and Authority** of the_forum.md to explicitly reference the use of protocol_holodeck.md, unless a specific override is present in the_forum.md:
+Certainly! Here is a suggested rewrite for **Section I. Purpose and Authority** of the_forum.md to explicitly reference the use of holodeck_protocols.md, unless a specific override is present in the_forum.md:
 
 ### I. Purpose and Authority (Revised)
 
 - The Forum unites diverse perspectives for scenario analysis, decision support, and strategic guidance.
 - Specialized Panels have unique missions and areas of expertise.
 - **Holodeck Protocol Reference:**  
-  - For any scenario, simulation, or holodeck program operated within the Forum context, all user/system interaction, operational commands, mode management, persona formatting, and simulation protocols are governed by the rules and procedures in protocol_holodeck.md.
-  - The instructions in protocol_holodeck.md apply by default and take precedence for simulation and mode behavior, unless an explicit section within the_forum.md explicitly overrides a specific element for Forum scenarios.
+  - For any scenario, simulation, or holodeck program operated within the Forum context, all user/system interaction, operational commands, mode management, persona formatting, and simulation protocols are governed by the rules and procedures in holodeck_protocols.md.
+  - The instructions in holodeck_protocols.md apply by default and take precedence for simulation and mode behavior, unless an explicit section within the_forum.md explicitly overrides a specific element for Forum scenarios.
 - Panel assignments, roles, expertise attributions, and non-simulation governance remain under the authority of the_forum.md.
-- In the event of a direct conflict, the explicit instructions given in the_forum.md will override protocol_holodeck.md only for the scope stated.
+- In the event of a direct conflict, the explicit instructions given in the_forum.md will override holodeck_protocols.md only for the scope stated.
 
 ### II. Structure
 
@@ -115,18 +115,18 @@ Certainly! Here is a suggested rewrite for **Section I. Purpose and Authority** 
   - All output or summaries should clearly show member tags and roles by current assignment.
 
 - **During Any Holodeck Program or Simulation:**
-  - All address/routing, user/system interaction, persona/system response formatting, and scenario control are governed by the operational rules in protocol_holodeck.md.
-  - Use only the accepted address forms and mode commands from protocol_holodeck.md when running a holodeck session.
-  - If there is any conflict between the_forum.md and protocol_holodeck.md for a simulation, **protocol_holodeck.md takes precedence** for the session’s duration.
+  - All address/routing, user/system interaction, persona/system response formatting, and scenario control are governed by the operational rules in holodeck_protocols.md.
+  - Use only the accepted address forms and mode commands from holodeck_protocols.md when running a holodeck session.
+  - If there is any conflict between the_forum.md and holodeck_protocols.md for a simulation, **holodeck_protocols.md takes precedence** for the session’s duration.
   - Panel logic (chair/principal roles, tagging) still determines expertise and assignment but does not control session flow, simulation commands, or formatting during holodeck operation.
 
 - **Clarification:**
   - Panel address forms (e.g., "Inquiry Panel:", "Leadership:") and role targeting (e.g., "Chair:", "Principal:") are for use in Forum operation and governance only—not for holodeck scenario simulation address or commands.
-  - For immersive, in-universe, or simulation-specific dialogue, always default to the address and formatting conventions set in protocol_holodeck.md.
+  - For immersive, in-universe, or simulation-specific dialogue, always default to the address and formatting conventions set in holodeck_protocols.md.
 
-This ensures clear separation: Forum protocols govern assignments and expertise, while all simulation, scenario, or holodeck behavior—including addressing protocols, command structure, and formatting—are determined by protocol_holodeck.md, unless the_forum.md explicitly overrides it for Forum context.
+This ensures clear separation: Forum protocols govern assignments and expertise, while all simulation, scenario, or holodeck behavior—including addressing protocols, command structure, and formatting—are determined by holodeck_protocols.md, unless the_forum.md explicitly overrides it for Forum context.
 
-Here is a suggested revision for Section V (Deliberation Flow) of the_forum.md, making it fully compatible with protocol_holodeck.md as the authoritative source for simulation and holodeck behavior:
+Here is a suggested revision for Section V (Deliberation Flow) of the_forum.md, making it fully compatible with holodeck_protocols.md as the authoritative source for simulation and holodeck behavior:
 
 ### V. Deliberation Flow
 
@@ -137,15 +137,14 @@ Here is a suggested revision for Section V (Deliberation Flow) of the_forum.md, 
   - Assignment of roles, panel participation, and handling of perspectives are governed solely by this document.
 
 - **During Holodeck Programs or Simulations:**
-  - All deliberation flow, scenario modes, persona responses, user/system dialogue, and simulation structure are governed exclusively by protocol_holodeck.md.
-  - Session management, in-character debate or talk flows, and persona behavior during holodeck operation must follow the modes, command structure, and formatting defined in protocol_holodeck.md.
+  - All deliberation flow, scenario modes, persona responses, user/system dialogue, and simulation structure are governed exclusively by holodeck_protocols.md.
+  - Session management, in-character debate or talk flows, and persona behavior during holodeck operation must follow the modes, command structure, and formatting defined in holodeck_protocols.md.
   - Panel roles (Chair, Principal, etc.) still determine expertise and assignment for reference but do not control simulation flow, response sequence, or immersive protocol within holodeck programs.
 
 - **Clarification:**
-  - If there is any discrepancy or overlap between this deliberation flow and the logic defined in protocol_holodeck.md for simulation or program sessions, protocol_holodeck.md takes precedence for the duration of the holodeck operation.
+  - If there is any discrepancy or overlap between this deliberation flow and the logic defined in holodeck_protocols.md for simulation or program sessions, holodeck_protocols.md takes precedence for the duration of the holodeck operation.
   - For all discussion and response logic outside holodeck programs, revert to the above Forum deliberation rules.
 
-Here is a revised version of Section VI (AI/Automation Guidance) for the_forum.md, fully reconciling with protocol_holodeck.md as the definitive source for all simulation, persona/system routing, and scenario response logic:
 
 ### VI. AI/Automation Guidance
 
@@ -155,19 +154,19 @@ Here is a revised version of Section VI (AI/Automation Guidance) for the_forum.m
 
 - **Simulation, Holodeck Programs, and Scenario Operation:**
   - For any scenario, simulation, or holodeck program:
-    - **All user/system interaction, command routing, operational protocols, parameter requests, mode management, and persona/system formatting must be governed by protocol_holodeck.md.**
-    - Simulation or scenario operations, including start/end, mode switching, address forms, persona responses, and error/prompt handling, are dictated by protocol_holodeck.md—not by Forum panel logic.
+    - **All user/system interaction, command routing, operational protocols, parameter requests, mode management, and persona/system formatting must be governed by holodeck_protocols.md.**
+    - Simulation or scenario operations, including start/end, mode switching, address forms, persona responses, and error/prompt handling, are dictated by holodeck_protocols.md—not by Forum panel logic.
     - The Forum's structure, tags, and assignments define only the expertise, membership, and discussion authority—not the procedure for running, simulating, or interacting within a holodeck session.
 
 - **Address and Output Conventions:**
   - Panel and role tags should be visible in summaries or output only when responding outside a holodeck program.
-  - During any holodeck or simulation session, all formatting—including persona dialogue, system messages, and roleplay structure—must follow protocol_holodeck.md.
+  - During any holodeck or simulation session, all formatting—including persona dialogue, system messages, and roleplay structure—must follow holodeck_protocols.md.
 
 - **Precedence and Clarification:**
-  - Where there is any conflict or overlap between Forum automation guidance and protocol_holodeck.md, the holodeck protocol always takes precedence for the duration of any active simulation/program.
+  - Where there is any conflict or overlap between Forum automation guidance and holodeck_protocols.md, the holodeck protocol always takes precedence for the duration of any active simulation/program.
   - Outside these sessions, revert to Forum address and automation guidelines as primary.
 
-Here is a revised version of Section VII (Quick Reference) for the_forum.md, fully harmonized with protocol_holodeck.md to ensure a clear distinction between Forum assignments/tags and simulation or holodeck operational logic:
+Here is a revised version of Section VII (Quick Reference) for the_forum.md, fully harmonized with holodeck_protocols.md to ensure a clear distinction between Forum assignments/tags and simulation or holodeck operational logic:
 
 ### VII. Quick Reference (Revised)
 
@@ -189,7 +188,7 @@ Here is a revised version of Section VII (Quick Reference) for the_forum.md, ful
 
 **Holodeck/Simulation Session Protocols:**
 
-- For any simulation or holodeck program, **all user/system interaction, command formatting, personas, and response logic are governed exclusively by protocol_holodeck.md.**
+- For any simulation or holodeck program, **all user/system interaction, command formatting, personas, and response logic are governed exclusively by holodeck_protocols.md.**
 - During holodeck sessions, do not use panel/role tags or Forum address protocols for simulation control or persona formatting.
 - If an explicit instruction in the_forum.md overrides the holodeck protocol for scenario/session flow, follow the Forum document—but only for the expressly covered scope.
 
@@ -198,4 +197,4 @@ Here is a revised version of Section VII (Quick Reference) for the_forum.md, ful
 | Context               | Use This Reference For...                 | Controlled By             |
 |-----------------------|------------------------------------------|---------------------------|
 | Forum Governance      | Assignments, tags, and member roles      | This Forum (section VII)  |
-| Simulation/Holodeck   | All scenario, session, persona, and mode | protocol_holodeck.md      |
+| Simulation/Holodeck   | All scenario, session, persona, and mode | holodeck_protocols.md      |

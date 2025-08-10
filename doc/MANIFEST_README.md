@@ -2,7 +2,7 @@
 
 ## Overview
 
-Every holodeck’s manifest (`*_manifest.yaml`) describes:
+Every holodeck’s manifest (`holodeck_manifest.yaml`) describes:
 
 - How personas are organized for batching,
 - Which batch files should be produced and how,
@@ -63,7 +63,7 @@ batches:
   everybody: true
   file_prefix: "the_bridge"
   markdown_header: true
-  persona_separator: "\n---\n"
+  persona_separator: "\n\n"
   encoding: "utf-8"
 ```
 
