@@ -145,7 +145,6 @@ Here is a suggested revision for Section V (Deliberation Flow) of the_forum.md, 
   - If there is any discrepancy or overlap between this deliberation flow and the logic defined in holodeck_protocols.md for simulation or program sessions, holodeck_protocols.md takes precedence for the duration of the holodeck operation.
   - For all discussion and response logic outside holodeck programs, revert to the above Forum deliberation rules.
 
-Here is a revised version of Section VI (AI/Automation Guidance) for the_forum.md, fully reconciling with holodeck_protocols.md as the definitive source for all simulation, persona/system routing, and scenario response logic:
 
 ### VI. AI/Automation Guidance
 
