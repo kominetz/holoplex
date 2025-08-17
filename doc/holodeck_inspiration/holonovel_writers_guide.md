@@ -1,6 +1,6 @@
 # The Holonovel Writer's Manual: Crafting Interactive Drama for the Holodeck
 
-*A comprehensive guide to narrative design, character development, and dramatic structure in holographic storytelling*
+A comprehensive guide to narrative design, character development, and dramatic structure in holographic storytelling
 
 Welcome to the art of holonovel creation—the evolution of dramatic writing for the age of immersive, interactive narrative. This manual translates centuries of theatrical and cinematic storytelling wisdom into the unique medium of holographic fiction, where the audience becomes protagonist and the fourth wall dissolves entirely.
 
@@ -74,7 +74,7 @@ Traditional dramatic structure assumes linear progression through fixed scenes. 
 
 **Responsive Dialogue Trees**: Unlike fixed film dialogue, holographic characters must respond to user personality as expressed through previous choices. The same story information might be delivered with warmth, suspicion, or formal politeness depending on established relationship dynamics.
 
-```
+```text
 Character: Inspector Javert
 Dialogue_Context: User previously showed mercy to minor criminal
 

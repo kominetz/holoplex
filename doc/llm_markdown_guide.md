@@ -510,6 +510,447 @@ Use: Table with key columns
 | end      | Terminate       | Director     |
 ```
 
+## YAML and Python Syntax Alignment
+
+LLMs have extensive training on YAML and Python syntax. Leveraging familiar patterns from these languages enhances parsing reliability and reduces cognitive load during interpretation.
+
+### Syntax Convergence Benefits
+
+Current Alignment Strengths:
+
+- **Key:Value Pairs**: `rank: Captain` matches YAML exactly, familiar from Python dictionaries
+- **List Syntax**: `- item` aligns perfectly with YAML arrays  
+- **Nested Objects**: Indented structures mirror both YAML nesting and Python dict literals
+- **Variable Substitution**: `{variable}` parallels Python f-string syntax
+- **Hierarchical Documents**: Heading structure reflects YAML document organization
+
+### Enhanced Boolean and Null Patterns
+
+Use: Explicit boolean and null values for clear state representation
+
+```markdown
+## System Status
+shields_active: true
+warp_core: false
+navigation: null
+emergency_power: true
+```
+
+Boolean Value Guidelines:
+
+- `true` / `false` for explicit boolean states (not "enabled"/"disabled")
+- `null` for undefined, missing, or not-applicable values
+- Distinguish `false` (explicitly disabled) from `null` (undefined/not-set)
+- LLMs recognize these from JSON/YAML training data
+
+### Null Value Semantics
+
+Use: `null` to represent missing, optional, or undefined data
+
+```markdown
+### Character - guest_officer
+name: null  # To be assigned during scenario
+rank: Lieutenant
+department: null  # Depends on mission requirements
+clearance_level: standard
+```
+
+Null Usage Patterns:
+
+- Optional character attributes not yet defined
+- Placeholder values for runtime assignment
+- Missing data that may be filled later
+- Distinguish from empty strings `""` or zero values `0`
+
+### Inline Documentation
+
+Use: Hash comments for inline documentation and context
+
+```markdown
+## Scenario Configuration
+# Diplomatic mission with moderate tension
+scenario_type: diplomatic_crisis
+difficulty: moderate  # Suitable for intermediate players
+estimated_duration: 45  # Minutes
+player_role: cultural_liaison
+
+# Character availability depends on previous choices
+characters_available:
+- picard  # Always available
+- troi    # Available if diplomatic_protocols: true
+- data    # Available if technical_analysis: required
+```
+
+Comment Guidelines:
+
+- Use `# comment` for line-level documentation
+- Place comments above the item they describe
+- Use for explaining conditional logic, constraints, or context
+- Enhance LLM understanding of intent and relationships
+
+### Multiline String Values
+
+Use: Pipe syntax for multiline narrative content
+
+```markdown
+### Character - picard
+background_story: |
+  Captain Jean-Luc Picard commands the Federation flagship USS Enterprise.
+  A veteran of numerous diplomatic missions, he prefers negotiation to conflict.
+  His experience with the Borg has given him unique insights into assimilation threats.
+
+mission_briefing: |
+  The Romulan delegation has requested emergency talks regarding territorial disputes.
+  Intelligence suggests internal political pressures may affect their negotiating position.
+  Recommend cultural sensitivity protocols and empathic support presence.
+```
+
+Multiline Guidelines:
+
+- Use `|` (pipe) to indicate multiline content starts on next line
+- Maintain consistent indentation for continuation lines
+- Ideal for character descriptions, mission briefings, dialogue
+- Preserves formatting and line breaks within content
+- LLMs recognize this from YAML training data
+
+### Environment and Configuration Layering
+
+Use: Nested configuration for different simulation contexts
+
+```markdown
+## Environment Configuration
+development:
+  debug_mode: true
+  rapid_progression: true
+  safety_overrides: enabled
+  logging_level: verbose
+
+production:
+  debug_mode: false
+  rapid_progression: false
+  safety_overrides: disabled
+  logging_level: standard
+
+# Current active environment
+active_environment: development
+```
+
+Environment Pattern Benefits:
+
+- Multiple configuration profiles in single file
+- Easy switching between simulation modes
+- Familiar pattern from DevOps and deployment systems
+- Clear separation of concerns for different contexts
+
+### Type Hints and Validation
+
+Use: Inline type annotations for complex data (optional)
+
+```markdown
+## Character Stats
+# Format: name: value  # type: expected_range
+strength: 85       # int: 1-100
+intelligence: 95   # int: 1-100
+diplomacy: 90      # int: 1-100
+combat_skill: 70   # int: 1-100
+species: human     # string: valid_species_list
+rank: captain      # enum: starfleet_ranks
+```
+
+Type Annotation Guidelines:
+
+- Use sparingly, only when validation is critical
+- Format: `# type: constraint` for documentation
+- Help LLMs understand expected value types and ranges
+- Useful for numerical stats, enumerations, and constrained values
+
+### YAML-Style References
+
+Use: Anchor-like patterns for reusable configurations
+
+```markdown
+## Standard Configurations
+
+### Configuration - diplomatic_standard
+safety_level: moderate
+cultural_protocols: enabled
+universal_translator: active
+escort_required: false
+
+### Configuration - high_risk_diplomatic  
+safety_level: maximum
+cultural_protocols: strict
+universal_translator: active
+escort_required: true
+
+## Scenario Applications
+# Reference standard configurations by name
+routine_contact: diplomatic_standard
+first_contact: high_risk_diplomatic
+treaty_negotiation: diplomatic_standard
+```
+
+Reference Pattern Benefits:
+
+- Reduces duplication across scenarios
+- Consistent configuration sets
+- Easy to update standard patterns
+- Clear separation of templates from applications
+
+## Variable References and Templating
+
+Use variable references to create reusable, dynamic content that avoids hard-coding entity names. This enables flexible event definitions, cross-file references, and maintainable simulations.
+
+### Variable Syntax
+
+Use: Curly braces for variable substitution
+
+```markdown
+Event Template:
+action: "{character_list}, report to {location}"
+timing: "immediately"
+authority: "{commanding_officer}"
+```
+
+Guidelines:
+
+- Use lowercase, snake_case for variable names
+- Keep variable names descriptive and unambiguous  
+- Variables can reference single entities or collections
+- Variables resolve at simulation runtime, not parse time
+
+### Intra-File References
+
+Use: Variable names that match entity IDs within the same file
+
+```markdown
+### Character - picard
+name: Jean-Luc Picard
+rank: Captain
+
+### Event - Emergency_Drill
+participants: "{bridge_crew}"
+location: "{main_bridge}"
+command: "{picard}, initiate emergency protocols"
+```
+
+Resolution Rules:
+
+- Variables resolve to entity IDs defined in the same file
+- Use the exact ID from headings (Character - picard → picard)
+- Collections resolve to all members of that set/list
+- Undefined variables should fail gracefully with clear error messages
+
+### Inter-File References
+
+Use: Namespace prefixes for cross-file entity references
+
+```markdown
+### Event - Diplomatic_Mission
+participants: "{characters:picard}, {characters:troi}"
+location: "{locations:conference_room}"
+briefing_materials: "{assets:diplomatic_protocols}"
+```
+
+File Organization:
+
+- Prefix format: `{filename:entity_id}`
+- Files should declare their namespace in a header comment
+- Use consistent file naming: characters.md, locations.md, scenarios.md
+- Document cross-file dependencies in program configuration
+
+### Collection Variables
+
+Use: Collection names for dynamic list expansion
+
+```markdown
+Bridge Crew:
+- picard
+- riker
+- data
+- worf
+
+### Event - General_Quarters
+announcement: "All hands, {bridge_crew}, report to stations"
+locations: "{all_decks}"
+duration: "{standard_drill_time}"
+```
+
+Expansion Behavior:
+
+- `{bridge_crew}` expands to: "picard, riker, data, worf"
+- `{all_decks}` expands to all members of the all_decks collection
+- Use consistent comma-separated format for list expansion
+- Empty collections expand to empty string, not error
+
+### Conditional References
+
+Use: If/when patterns with variable substitution
+
+```markdown
+### Event - Security_Alert
+If threat_level == "yellow":
+  participants: "{security_team}"
+  location: "{tactical_stations}"
+If threat_level == "red":
+  participants: "{all_senior_staff}"
+  location: "{battle_bridge}"
+```
+
+### Reference Validation
+
+Use: Validation section to define required entities
+
+```markdown
+### Event Dependencies
+Required Characters:
+- picard (commanding_officer role)
+- data (technical_analysis role)
+
+Required Locations:
+- main_bridge (primary_location)
+- ready_room (private_meeting_space)
+
+Optional References:
+- guest_characters (diplomatic scenarios only)
+```
+
+### Cross-Reference Links
+
+Use: Square brackets for explicit cross-file navigation (distinct from variables)
+
+```markdown
+Character Background:
+commanding_officer: picard
+mentor_relationship: [Character: guinan]
+previous_assignment: [Location: stargazer_bridge]
+```
+
+Guidelines:
+
+- `[Type: entity_id]` format for explicit links
+- Reserve square brackets for intentional cross-references, not variable substitution
+- Use when the reference needs to be clickable/navigable
+- Distinguish from variables which expand inline
+
+### Variable Syntax Analysis
+
+Sigil Selection Rationale:
+
+- `{}` (curly braces): RECOMMENDED - no markdown conflicts, high LLM familiarity from Python format strings
+- `` ` `` (backticks): AVOID - conflicts with code literals (275+ uses in guide)
+- `[]` (square brackets): CAUTION - potential conflicts with markdown links
+- `*/**` (asterisks): AVOID - conflicts with emphasis syntax
+- `$` (dollar signs): AVOID - LaTeX math conflicts in some renderers
+- `%` (percent signs): POSSIBLE but less intuitive for LLMs
+
+The curly brace syntax provides zero conflict with existing markdown patterns while leveraging LLMs' strong familiarity with template string conventions from Python and other systems.
+
+## Optional Markdown Extensions
+
+These patterns are not essential for core functionality but may enhance specific use cases. Evaluate based on your simulation requirements and tooling constraints.
+
+### Boolean State Tracking
+
+Use: Task list syntax for on/off states (optional)
+
+```markdown
+Ship Systems Status:
+- [x] Shields operational
+- [x] Weapons online
+- [ ] Warp drive offline
+- [ ] Life support backup mode
+```
+
+Benefits:
+
+- More visually clear than `shield_status: active`
+- Familiar checkbox metaphor for LLMs
+- Interactive appearance in some renderers
+
+Considerations:
+
+- Not universally supported across all markdown processors
+- May interfere with some automated parsing tools
+- Alternative: standard key:value pairs work reliably everywhere
+
+### System Messages and Meta-Information
+
+Use: Blockquotes for system-level information (optional)
+
+```markdown
+### Event - Diplomatic_Crisis
+
+> System: This scenario requires cultural sensitivity protocols
+> Warning: High-stakes diplomatic consequences possible
+> Note: Troi's empathic abilities are essential for success
+
+Participants: "{diplomatic_team}"
+Location: "{conference_room}"
+```
+
+Benefits:
+
+- Visually distinct from regular content
+- Useful for LLM behavioral guidance
+- Clear indication of meta-information
+
+Considerations:
+
+- Consider whether special formatting adds meaningful value
+- Alternative: Use standard labels (System Note:, Warning:) for similar effect
+
+### Conditional/Disabled Content
+
+Use: Strikethrough for disabled or conditional elements (optional)
+
+```markdown
+Available Actions:
+- Negotiate with diplomats
+- ~~Activate weapons systems~~ (disabled during diplomatic mission)
+- Consult with cultural advisor
+- ~~Evacuate civilians~~ (unavailable until red alert)
+```
+
+Benefits:
+
+- Clear visual indication of disabled states
+- Maintains context while showing restrictions
+- Useful for conditional menu systems
+
+Considerations:
+
+- May not render consistently across all environments
+- Alternative: Use conditional sections or comments for disabled content
+
+### Alternative State Patterns
+
+Consider these alternatives to the optional extensions above:
+
+```markdown
+Ship Systems (Standard Approach):
+shields: operational
+weapons: online
+warp_drive: offline
+life_support: backup_mode
+
+System Notes (Standard Approach):
+behavioral_guidance: cultural_sensitivity_required
+stakes_level: high
+required_abilities: empathic_sensing
+
+Conditional Content (Standard Approach):
+available_actions:
+- negotiate_with_diplomats
+- consult_cultural_advisor
+
+disabled_actions:
+- activate_weapons (reason: diplomatic_mission_active)
+- evacuate_civilians (reason: requires_red_alert)
+```
+
+Recommendation: Start with standard patterns and add optional extensions only when they provide clear, measurable benefits for your specific use case.
+
 ## Error Handling and Validation
 
 ### Input validation
@@ -653,7 +1094,7 @@ Follow these directives when generating or editing Markdown in this project. The
 - Code fences and diagrams
   - Place opening and closing fences on their own lines, with no trailing characters.
   - Add a blank line before and after fenced blocks.
-  - Use the correct language tag (“```text”, “``````mermaid”) and do not HTML‑escape within fences.
+  - Use the correct language tag (“```text”, “```mermaid”) and do not HTML‑escape within fences.
 
 - Whitespace and indentation
   - Use spaces only (no tabs). Indentation must be consistent (2 spaces).
