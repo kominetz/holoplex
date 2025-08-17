@@ -1,6 +1,6 @@
 # Your Guide to Holodeck Programming: Crafting Interactive Narratives in the 24th Century
 
-*A comprehensive manual for holographic scenario development, from simple recreational programs to complex holonovels*
+A comprehensive manual for holographic scenario development, from simple recreational programs to complex holonovels
 
 Welcome to holodeck programming—the art of crafting immersive, interactive narratives that blur the boundaries between story and reality. Whether you're designing a simple historical recreation or an epic multi-chapter holonovel, this guide will teach you the principles, patterns, and practices that transform voice commands into living worlds.
 
@@ -18,7 +18,7 @@ Holodeck programming operates on **declarative principles**—you specify *what*
 
 **Basic Syntax Pattern:**
 
-```
+```text
 Computer, [create/run/load] [object/program/scenario] [name/description]
 ```
 
