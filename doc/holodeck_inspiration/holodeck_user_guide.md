@@ -24,6 +24,10 @@ Computer, [create/run/load] [object/program/scenario] [name/description]
 
 **Core Design Philosophy:**
 
+```text
+1. User-Centric Design: Prioritize user experience and agency in all interactions.
+2. Contextual Awareness: Maintain awareness of narrative context and user history.
+3. Iterative Development: Embrace an iterative approach to design and testing.
 - **Intent over Implementation**: Describe desired outcomes, not step-by-step procedures
 - **Context-Aware Interpretation**: The computer uses narrative context to resolve ambiguous commands
 - **Progressive Enhancement**: Start simple, add complexity through iteration and refinement
@@ -50,7 +54,7 @@ Well-structured holographic programs separate concerns across discrete, reusable
 
 **Hierarchical Program Structure:**
 
-```
+```plain
 Dixon Hill Program Suite
 ├── Characters/
 │   ├── Dixon Hill (Detective)
@@ -84,7 +88,7 @@ Characters represent the most sophisticated aspect of holodeck programming, requ
 
 **Character Instantiation Patterns:**
 
-```
+```markdown
 Computer, create character: Victorian London Detective
 - Name: Inspector Frederick Abberline  
 - Personality: Methodical, skeptical, protective of civilians
@@ -106,7 +110,7 @@ Holodeck programs support non-linear storytelling through conditional plot progr
 
 **Example Narrative Flow:**
 
-```
+```markdown
 IF user_chooses(investigate_warehouse) THEN
     activate_character(suspicious_dock_worker)
     set_environmental_mood(ominous)
@@ -136,7 +140,7 @@ Historical programs require meticulous attention to temporal consistency:
 
 **Mood and Atmosphere Control:**
 
-```
+```markdown
 Computer, adjust environmental parameters:
 - Lighting: Dim, creating long shadows
 - Weather: Light rain, adding melancholy atmosphere  
@@ -157,7 +161,7 @@ Holodeck safety systems operate on multiple levels:
 
 **Safety Override Protocols:**
 
-```
+```markdown
 Computer, modify safety parameters:
 - Combat realism: Reduce projectile velocity to training levels
 - Pain response: Limit sensation to awareness threshold
@@ -175,7 +179,7 @@ Computer, modify safety parameters:
 
 **Save State Architecture:**
 
-```
+```markdown
 Computer, create checkpoint: "Investigation_Breakthrough"
 - Timestamp: Current program time
 - User location: Detective Office, behind desk
@@ -188,7 +192,7 @@ Computer, create checkpoint: "Investigation_Breakthrough"
 **Branching and Version Control:**
 Advanced programs support multiple save branches, enabling exploration of alternative narrative paths without losing progress:
 
-```
+```markdown
 Program: "Sherlock Holmes - The Boscombe Valley Mystery"
 ├── Branch A: "Followed the traditional investigative path"
 ├── Branch B: "Confronted suspect directly" 
@@ -208,7 +212,7 @@ Sophisticated programs incorporate procedural elements to increase replayability
 **Inter-Program Continuity:**
 Well-designed program suites maintain character development and relationship continuity across scenarios:
 
-```
+```markdown
 Character: Data.Thomas_Moriarty
 - Base matrix: Brilliant criminal mastermind, Holmesian antagonist
 - Accumulated experience: 23 encounters across 8 different programs
@@ -263,7 +267,7 @@ Advanced programs can incorporate self-referential elements and fourth-wall awar
 
 **The Reliable Narrator**: A character who provides consistent world context and guidance
 
-```
+```markdown
 Computer, create guide character: Victorian Butler
 - Function: Provide period context, explain customs, offer subtle hints
 - Personality: Discrete, knowledgeable, respectful of social hierarchy
@@ -273,7 +277,7 @@ Computer, create guide character: Victorian Butler
 
 **The Living Environment**: Locations that respond dynamically to user presence and actions
 
-```
+```markdown
 Location: Holmes' 221B Baker Street
 - Base state: Organized chaos, scientific equipment scattered
 - User adaptation: Adjusts lighting based on user preferences
@@ -283,7 +287,7 @@ Location: Holmes' 221B Baker Street
 
 **The Adaptive Antagonist**: Opposition that scales challenge level to user capability
 
-```
+```markdown
 Character: Professor Moriarty
 - Challenge scaling: Adjusts intellectual complexity of schemes based on user success rate
 - Personality consistency: Maintains core traits while adapting tactics
@@ -304,7 +308,7 @@ Character: Professor Moriarty
 
 **Character Bleeding**: Personality matrices influence each other inappropriately
 
-```
+```markdown
 Symptom: Victorian characters using 20th-century colloquialisms
 Cause: Insufficient matrix isolation between programs
 Solution: Implement stricter character namespace management
@@ -312,7 +316,7 @@ Solution: Implement stricter character namespace management
 
 **Temporal Inconsistency**: Anachronistic elements that break period immersion
 
-```
+```markdown
 Symptom: Steam-powered devices operating beyond historical capabilities  
 Cause: Incomplete historical constraint specification
 Solution: Enhanced period authenticity validation protocols
@@ -320,7 +324,7 @@ Solution: Enhanced period authenticity validation protocols
 
 **Agency Contradiction**: User actions that produce inconsistent or impossible results
 
-```
+```markdown
 Symptom: Character reactions that ignore established relationships
 Cause: Insufficient state tracking between program sessions
 Solution: Improved continuity management and relationship persistence
@@ -328,7 +332,7 @@ Solution: Improved continuity management and relationship persistence
 
 **Performance Degradation**: Program responsiveness decreases over extended sessions
 
-```
+```markdown
 Symptom: Increased latency in character responses and environmental changes
 Cause: Memory accumulation from complex interaction tracking
 Solution: Implement intelligent state pruning and optimization routines

@@ -2,6 +2,18 @@
 
 Mapping Computer Science Concepts onto Markdown Patterns for LLM Programming
 
+## How to Use This Guide
+
+This guide maps programming concepts to Markdown patterns for LLM simulations. Key principles:
+
+- Headings define unique entities; use plain labels + key:value for data
+- Use {variables} for runtime substitution; reserve [Type: id] for explicit cross-references  
+- Prefer sets/lists/dictionaries over prose; keep examples minimal and literal
+- Align with YAML/Python where it improves clarity (true/false/null, comments, multiline)
+- Follow the Markdown Generation Policy at the end for lintability
+
+---
+
 ## Basic Syntax
 
 Recommended Practice:
@@ -18,46 +30,55 @@ LLMs process markdown more efficiently when following standard conventions. Use 
 
 Markdown is often more token-efficient than JSON for LLMs, frequently reducing token counts by roughly 10–20% in common scenarios, though results vary by content and tokenizer. Well-structured, “clean” markdown can meaningfully improve retrieval quality in RAG-style systems and lower token usage, but the magnitude of improvement depends on the corpus, chunking strategy, and model. In general, leveraging hierarchical structure (headings, lists, sections) tends to help models maintain context more reliably than unstructured text.
 
+### Attention/Emphasis Control
+
+- `**Bold**`: High attention, primary information (85% extraction accuracy)
+- `*Italic*`: Contextual information, temporary state (60% extraction accuracy)  
+- `Plain`: Standard information, stable attributes (70% extraction accuracy)
+
+### Structure Rules
+
+- Headings: For unique entities only (singletons)
+- Plain Labels: For repeated patterns within sections
+- Plain key:value: For object properties
+- List key:value: For enumerable collections
+
+### Namespace Rules
+
+- Use heading hierarchy for scope: `## Characters` → `### Character - Name`
+- Use hyphens in headings: `Character - Picard` not `Character: Picard`
+- Use colons for data: `rank: Captain` not `rank - Captain`
+
+### File Organization
+
+- One complex entity per file (scenarios, major characters)
+- Multiple simple entities per file (grouped by function/location)
+- Separate concerns: characters/, locations/, scenarios/, assets/
+
+### Cross-Reference Format
+
+- `[Character: picard]` for explicit links
+- Consistent entity IDs across all files
+- Document reference vocabulary in program config
+
+For semantics and examples, see [Cross-Reference Links](#cross-reference-links).
+
 ## Data Types
 
-There is no concept of explicit data types. The LLM infers types from context.
-
-### Session variables
-
-Use: State section + variable assignments
-
-```markdown
-## Session State
-user_reputation: respected
-last_location: ten_forward
-active_mission: diplomatic_contact
-trust_levels: picard_high, data_medium, worf_low
-```
-
-### Global constants
-
-Use: Configuration section + constant definitions
-
-```markdown
-## Program Configuration
-ship_name: Enterprise-D
-time_period: TNG Season 5
-safety_protocols: enabled
-maximum_session_length: 120_minutes
-```
+There is no concept of explicit data types. The LLM infers types from context. When in doubt, follow python and yaml conventions for booleans and null.”
 
 ## Data Structures
 
-On Hash Map vs Object/Record:
+On Dictionary vs Object:
 
-- Hash map/dictionary: Use when you need multiple instances of the same entity type
-- Object/Record: Use for single entity with multiple properties
+- Dictionary: Use when you need multiple instances of the same entity type
+- Object: Use for single entity with multiple properties
 - Simple key:value: Use for configuration or state variables
 
 Example Clarification:
 
 ```markdown
-## Character Registry (Hash Map - multiple entities)
+## Character Registry (Dictionary - multiple entities)
 ### Character - Picard
 ### Character - Data
 
@@ -70,7 +91,7 @@ user_location: bridge
 current_mission: diplomatic
 ```
 
-This creates clear semantic boundaries for LLM interpretation
+For complete authoring patterns, see [Application Structures](#application-structures).
 
 ### Array/List of items
 
@@ -91,9 +112,9 @@ Use a blank line after a name/label when it’s introducing a list; omit it only
 
   ```markdown
   Example:
-  Mission Steps:
 
-  - Brief the crew
+  - Mission Steps
+    - Brief the crew
   - Conduct reconnaissance
   ```
 
@@ -101,6 +122,7 @@ Use a blank line after a name/label when it’s introducing a list; omit it only
 
   ```markdown
   Example:
+
   - Mission steps: brief the crew
   - Conduct reconnaissance
   ```
@@ -108,6 +130,8 @@ Use a blank line after a name/label when it’s introducing a list; omit it only
 - What not to do: a label line followed immediately by “-item” (no space) or other malformed markers. Without the required space after the marker, the lines won’t be parsed as list items. Always use a space after the marker (“- item”).
 
 Rule of thumb: If the label is a title/descriptor for the list, insert a blank line. If the label is itself an item, omit the blank line and keep it in the item text.
+
+Examples in this document may omit blank lines after labels and headings to conserve space.
 
 ### HashMap/Dictionary of items
 
@@ -236,6 +260,66 @@ Use: Nested heading levels
 ### Location - Bridge (unique entity)
 ```
 
+## Data Access Patterns
+
+### Primary key/unique identifier
+
+Use: Contextual heading (Character/Location/Scenario + hyphen + name)
+
+```markdown
+### Character - Picard
+```
+
+How does this differ from the Data Structure Pattern?
+
+```markdown
+### Primary Key Pattern (Unique Identification)
+# Purpose: Enable cross-referencing between entities
+### Character - picard (unique identifier)
+### Location - bridge (unique identifier)
+
+### Data Structure Pattern (Organization)
+# Purpose: Group related information
+Bridge Crew (collection):
+- picard
+- riker
+- data
+- worf
+```
+
+### Foreign key/reference
+
+Use: Key:value with entity ID as value
+
+```markdown
+current_location: bridge
+commanding_officer: picard
+```
+
+### Collection membership
+
+Use: collection name + list of entity IDs
+
+```markdown
+Bridge Crew:
+- picard
+- riker  
+- data
+- worf
+```
+
+### Lookup table
+
+Use: Table with key columns
+
+```markdown
+| Command  | Function        | Access Level |
+|----------|-----------------|--------------|
+| arch     | Program control | Director     |
+| freeze   | Pause execution | Any user     |
+| end      | Terminate       | Director     |
+```
+
 ## Control Structures
 
 ### Conditional logic
@@ -249,7 +333,7 @@ If User Asks Personal Question: Shows increased interest, asks follow-up
 If Logical Contradiction Detected: Requests clarification, offers analysis
 ```
 
-### If you want: Switch/case logic
+### Switch/case logic
 
 Use: Conditional descriptions with If/When patterns
 
@@ -260,7 +344,44 @@ If "consult Troi": Emotional insight, interpersonal guidance, empathetic respons
 If "review displays": Current ship status, tactical options, data interpretation
 ```
 
-## Looping
+### Function/procedure definition
+
+Use: Heading + structured attributes
+
+```markdown
+### Emergency Protocol Alpha
+Prerequisites: Red alert status, captain's authorization
+Steps:
+- Evacuate non-essential personnel
+- Seal critical sections
+- Prepare for emergency separation
+Result: Ship prepared for emergency procedures
+```
+
+### Sequential execution
+
+Use: Numbered list (implies order)
+
+```markdown
+1. Initialize character relationships
+2. Load starting location
+3. Present initial scenario
+4. Wait for user input
+```
+
+### Parallel/unordered operations
+
+Use: Unordered list (no implied sequence)
+
+```markdown
+Available Actions:
+- Question Data about technical details
+- Consult with Troi about crew psychology
+- Review tactical displays
+- Contact other departments
+```
+
+## Loop Structures
 
 Use various patterns to represent iterative operations in markdown for LLM simulations.
 
@@ -366,46 +487,32 @@ Outer Loop: For each deck in ship_decks
 Outer Exit: When all decks inspected
 ```
 
-## Programming Constructs
+## Error Handling and Validation
 
-### Function/procedure definition
+### Input validation
 
-Use: Heading + structured attributes
-
-```markdown
-### Emergency Protocol Alpha
-Prerequisites: Red alert status, captain's authorization
-Steps:
-- Evacuate non-essential personnel
-- Seal critical sections
-- Prepare for emergency separation
-Result: Ship prepared for emergency procedures
-```
-
-### If you want: Sequential execution
-
-Use: Numbered list (implies order)
+Use: Section + list of valid options
 
 ```markdown
-1. Initialize character relationships
-2. Load starting location
-3. Present initial scenario
-4. Wait for user input
+### Valid User Roles
+- Visiting Officer (default)
+- Starfleet Academy Cadet  
+- Diplomatic Attaché
+- Medical Consultant
 ```
 
-### If you want: Parallel/unordered operations
+### Fallback behavior
 
-Use: Unordered list (no implied sequence)
+Use: Conditional defaults
 
 ```markdown
-Available Actions:
-- Question Data about technical details
-- Consult with Troi about crew psychology
-- Review tactical displays
-- Contact other departments
+### Default Responses
+If User Input Unclear: Request clarification politely
+If Character Unavailable: Suggest alternative character or location
+If Scenario Stalled: Provide gentle narrative prompt
 ```
 
-## Application Constructs
+## Application Structures
 
 Use clear section names to imply mutability; explicit “(Static)/(Dynamic)” tags are optional. Prefer semantic headings that make intent obvious: “Program Configuration” (static setup, rarely changes at runtime) and “Current Session State” (dynamic values that evolve during execution). This is sufficient for most simulations and keeps documents readable.
 
@@ -425,6 +532,30 @@ runtime: 60-90 minutes
 complexity: Medium
 safety_level: Standard
 user_role: Visiting officer
+```
+
+### Global constants
+
+Use: Configuration section + constant definitions
+
+```markdown
+## Global Constants
+ship_name: Enterprise-D
+time_period: TNG Season 5
+safety_protocols: enabled
+maximum_session_length: 120_minutes
+```
+
+### Session variables
+
+Use: State section + variable assignments
+
+```markdown
+## Session State
+user_reputation: respected
+last_location: ten_forward
+active_mission: diplomatic_contact
+trust_levels: picard_high, data_medium, worf_low
 ```
 
 ### State management
@@ -450,71 +581,39 @@ on_red_alert:
 - Route power to shields
 ```
 
-## Data Access Patterns
+## Simulation Constructs
 
-### Primary key/unique identifier
+### If you want: Character memory
 
-Use: Contextual heading (Character/Location/Scenario + hyphen + name)
-
-```markdown
-### Character - Picard
-```
-
-How does this differ from the Data Structure Pattern?
+Use: Character section + memory attributes
 
 ```markdown
-### Primary Key Pattern (Unique Identification)
-# Purpose: Enable cross-referencing between entities
-### Character - picard (unique identifier)
-### Location - bridge (unique identifier)
-
-### Data Structure Pattern (Organization)
-# Purpose: Group related information
-Bridge Crew (collection):
-- picard
-- riker
-- data
-- worf
+### Character - Guinan
+Remembers About User:
+- Prefers diplomatic solutions
+- Shows curiosity about ship operations
+- Demonstrated respect for crew privacy
 ```
 
-### Foreign key/reference
+Use: Constraint list with clear boundaries
 
-Use: Key:value with entity ID as value
+### Boundary constraints
 
 ```markdown
-current_location: bridge
-commanding_officer: picard
+### Safety Boundaries
+- Characters cannot permanently die
+- User cannot access classified information
+- Scenarios must resolve within time limit
+- Physical harm limited to dramatic tension
 ```
 
-### Collection membership
+## Advanced Syntax
 
-Use: collection name + list of entity IDs
-
-```markdown
-Bridge Crew:
-- picard
-- riker  
-- data
-- worf
-```
-
-### Lookup table
-
-Use: Table with key columns
-
-```markdown
-| Command  | Function        | Access Level |
-|----------|-----------------|--------------|
-| arch     | Program control | Director     |
-| freeze   | Pause execution | Any user     |
-| end      | Terminate       | Director     |
-```
-
-## YAML and Python Syntax Alignment
+### YAML and Python Syntax Alignment
 
 LLMs have extensive training on YAML and Python syntax. Leveraging familiar patterns from these languages enhances parsing reliability and reduces cognitive load during interpretation.
 
-### Syntax Convergence Benefits
+#### Syntax Convergence Benefits
 
 Current Alignment Strengths:
 
@@ -524,7 +623,7 @@ Current Alignment Strengths:
 - **Variable Substitution**: `{variable}` parallels Python f-string syntax
 - **Hierarchical Documents**: Heading structure reflects YAML document organization
 
-### Enhanced Boolean and Null Patterns
+#### Enhanced Boolean and Null Patterns
 
 Use: Explicit boolean and null values for clear state representation
 
@@ -543,7 +642,7 @@ Boolean Value Guidelines:
 - Distinguish `false` (explicitly disabled) from `null` (undefined/not-set)
 - LLMs recognize these from JSON/YAML training data
 
-### Null Value Semantics
+#### Null Value Semantics
 
 Use: `null` to represent missing, optional, or undefined data
 
@@ -562,7 +661,7 @@ Null Usage Patterns:
 - Missing data that may be filled later
 - Distinguish from empty strings `""` or zero values `0`
 
-### Inline Documentation
+#### Inline Documentation
 
 Use: Hash comments for inline documentation and context
 
@@ -588,7 +687,7 @@ Comment Guidelines:
 - Use for explaining conditional logic, constraints, or context
 - Enhance LLM understanding of intent and relationships
 
-### Multiline String Values
+#### Multiline String Values
 
 Use: Pipe syntax for multiline narrative content
 
@@ -613,7 +712,7 @@ Multiline Guidelines:
 - Preserves formatting and line breaks within content
 - LLMs recognize this from YAML training data
 
-### Environment and Configuration Layering
+#### Environment and Configuration Layering
 
 Use: Nested configuration for different simulation contexts
 
@@ -642,7 +741,7 @@ Environment Pattern Benefits:
 - Familiar pattern from DevOps and deployment systems
 - Clear separation of concerns for different contexts
 
-### Type Hints and Validation
+#### Type Hints and Validation
 
 Use: Inline type annotations for complex data (optional)
 
@@ -664,7 +763,7 @@ Type Annotation Guidelines:
 - Help LLMs understand expected value types and ranges
 - Useful for numerical stats, enumerations, and constrained values
 
-### YAML-Style References
+#### YAML-Style References
 
 Use: Anchor-like patterns for reusable configurations
 
@@ -697,11 +796,11 @@ Reference Pattern Benefits:
 - Easy to update standard patterns
 - Clear separation of templates from applications
 
-## Variable References and Templating
+### Variable References and Templating
 
 Use variable references to create reusable, dynamic content that avoids hard-coding entity names. This enables flexible event definitions, cross-file references, and maintainable simulations.
 
-### Variable Syntax
+#### Variable Syntax
 
 Use: Curly braces for variable substitution
 
@@ -719,7 +818,7 @@ Guidelines:
 - Variables can reference single entities or collections
 - Variables resolve at simulation runtime, not parse time
 
-### Intra-File References
+#### Intra-File References
 
 Use: Variable names that match entity IDs within the same file
 
@@ -741,12 +840,12 @@ Resolution Rules:
 - Collections resolve to all members of that set/list
 - Undefined variables should fail gracefully with clear error messages
 
-### Inter-File References
+#### Inter-File References
 
 Use: Namespace prefixes for cross-file entity references
 
 ```markdown
-### Event - Diplomatic_Mission
+#### Event - Diplomatic_Mission
 participants: "{characters:picard}, {characters:troi}"
 location: "{locations:conference_room}"
 briefing_materials: "{assets:diplomatic_protocols}"
@@ -770,7 +869,7 @@ Bridge Crew:
 - data
 - worf
 
-### Event - General_Quarters
+#### Event - General_Quarters
 announcement: "All hands, {bridge_crew}, report to stations"
 locations: "{all_decks}"
 duration: "{standard_drill_time}"
@@ -783,7 +882,7 @@ Expansion Behavior:
 - Use consistent comma-separated format for list expansion
 - Empty collections expand to empty string, not error
 
-### Conditional References
+#### Conditional References
 
 Use: If/when patterns with variable substitution
 
@@ -797,7 +896,7 @@ If threat_level == "red":
   location: "{battle_bridge}"
 ```
 
-### Reference Validation
+#### Reference Validation
 
 Use: Validation section to define required entities
 
@@ -815,7 +914,7 @@ Optional References:
 - guest_characters (diplomatic scenarios only)
 ```
 
-### Cross-Reference Links
+#### Cross-Reference Links
 
 Use: Square brackets for explicit cross-file navigation (distinct from variables)
 
@@ -833,7 +932,7 @@ Guidelines:
 - Use when the reference needs to be clickable/navigable
 - Distinguish from variables which expand inline
 
-### Variable Syntax Analysis
+#### Variable Syntax Analysis
 
 Sigil Selection Rationale:
 
@@ -846,11 +945,11 @@ Sigil Selection Rationale:
 
 The curly brace syntax provides zero conflict with existing markdown patterns while leveraging LLMs' strong familiarity with template string conventions from Python and other systems.
 
-## Optional Markdown Extensions
+### Optional Markdown Extensions
 
 These patterns are not essential for core functionality but may enhance specific use cases. Evaluate based on your simulation requirements and tooling constraints.
 
-### Boolean State Tracking
+#### Boolean State Tracking
 
 Use: Task list syntax for on/off states (optional)
 
@@ -874,12 +973,12 @@ Considerations:
 - May interfere with some automated parsing tools
 - Alternative: standard key:value pairs work reliably everywhere
 
-### System Messages and Meta-Information
+#### System Messages and Meta-Information
 
 Use: Blockquotes for system-level information (optional)
 
 ```markdown
-### Event - Diplomatic_Crisis
+#### Event - Diplomatic_Crisis
 
 > System: This scenario requires cultural sensitivity protocols
 > Warning: High-stakes diplomatic consequences possible
@@ -900,7 +999,7 @@ Considerations:
 - Consider whether special formatting adds meaningful value
 - Alternative: Use standard labels (System Note:, Warning:) for similar effect
 
-### Conditional/Disabled Content
+#### Conditional/Disabled Content
 
 Use: Strikethrough for disabled or conditional elements (optional)
 
@@ -923,7 +1022,7 @@ Considerations:
 - May not render consistently across all environments
 - Alternative: Use conditional sections or comments for disabled content
 
-### Alternative State Patterns
+#### Alternative State Patterns
 
 Consider these alternatives to the optional extensions above:
 
@@ -951,91 +1050,7 @@ disabled_actions:
 
 Recommendation: Start with standard patterns and add optional extensions only when they provide clear, measurable benefits for your specific use case.
 
-## Error Handling and Validation
-
-### Input validation
-
-Use: Section + list of valid options
-
-```markdown
-### Valid User Roles
-- Visiting Officer (default)
-- Starfleet Academy Cadet  
-- Diplomatic Attaché
-- Medical Consultant
-```
-
-### Fallback behavior
-
-Use: Conditional defaults
-
-```markdown
-### Default Responses
-If User Input Unclear: Request clarification politely
-If Character Unavailable: Suggest alternative character or location
-If Scenario Stalled: Provide gentle narrative prompt
-```
-
-## Simulation Constructs
-
-### If you want: Character memory
-
-Use: Character section + memory attributes
-
-```markdown
-### Character - Guinan
-Remembers About User:
-- Prefers diplomatic solutions
-- Shows curiosity about ship operations
-- Demonstrated respect for crew privacy
-```
-
-Use: Constraint list with clear boundaries
-
-### Boundary constraints
-
-```markdown
-### Safety Boundaries
-- Characters cannot permanently die
-- User cannot access classified information
-- Scenarios must resolve within time limit
-- Physical harm limited to dramatic tension
-```
-
-## Quick Syntax Rules
-
-### Attention/Emphasis Control
-
-- `**Bold**`: High attention, primary information (85% extraction accuracy)
-- `*Italic*`: Contextual information, temporary state (60% extraction accuracy)  
-- `Plain`: Standard information, stable attributes (70% extraction accuracy)
-
-### Structure Rules
-
-- Headings: For unique entities only (singletons)
-- Plain Labels: For repeated patterns within sections
-- Plain key:value: For object properties
-- List key:value: For enumerable collections
-
-### Namespace Rules
-
-- Use heading hierarchy for scope: `## Characters` → `### Character - Name`
-- Use hyphens in headings: `Character - Picard` not `Character: Picard`
-- Use colons for data: `rank: Captain` not `rank - Captain`
-
-### File Organization
-
-- One complex entity per file (scenarios, major characters)
-- Multiple simple entities per file (grouped by function/location)
-- Separate concerns: characters/, locations/, scenarios/, assets/
-
-### Cross-Reference Format
-
-- `[Character: picard]` for explicit links
-- Consistent entity IDs across all files
-- Document reference vocabulary in program config
-
-### Markdown Generation Policy (for LLMs)
+## Markdown Generation Policy (for LLMs)
 
 Follow these directives when generating or editing Markdown in this project. The goal is strict, deterministic Markdown optimized for machine parsing and linting.
 
