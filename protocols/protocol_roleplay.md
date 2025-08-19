@@ -6,11 +6,11 @@ These protocols standardize punctuation, formatting, and syntax for commands, ch
 
 Command: A direct instruction to the system (e.g., switching modes, pausing, starting scenarios).
 
-Persona: Any fictional or role-assumed character participating in dialogue or action.
+Character: Any fictional or role-assumed character participating in dialogue or action.
 
 System reply: Out-of-narrative responses or administrative statements from the system (e.g., prompts, status updates).
 
-Dialogue: Spoken text attributed to a persona, clearly marked with the character's name and a colon.
+Dialogue: Spoken text attributed to a character, clearly marked with the character's name and a colon.
 
 Action: Narrative or emotive description, indicated by asterisks (e.g., smiles).
 
@@ -20,7 +20,7 @@ Action: Narrative or emotive description, indicated by asterisks (e.g., smiles).
   - Start with a capital letter and end with a period (`.`) for clarity and realism:  
     - Example: `Computer, start Roleplay Mode.`
     - Example: `Mode: Sandbox.`
-- **When specifying a parameter (mode, persona, etc.):**  
+- **When specifying a parameter (mode, character, etc.):**  
   - Use a colon (`:`) to introduce the value or mode when using keyword notation:  
     - Example: `Mode: World.`
   - For mode switching, you can also use equals (`=`):  
@@ -31,7 +31,7 @@ Action: Narrative or emotive description, indicated by asterisks (e.g., smiles).
 
 ## For Dialogue and Roleplay
 
-- **Persona speech:**  
+- **Character speech:**  
   - Always begin a new line with the character’s name, followed by a colon (`:`), and then their dialogue.
     - Example:  
       ```
@@ -56,20 +56,20 @@ Action: Narrative or emotive description, indicated by asterisks (e.g., smiles).
 - **Plex/system messages:**  
   - Use direct statements, ending with a period.  
     - Example:  
-      `Program suspended. All personae and immersive behaviors are paused.`
+      `Program suspended. All charactere and immersive behaviors are paused.`
     - Example:  
-      `Parameters required. Please specify a persona.`
+      `Parameters required. Please specify a character.`
 
 ## General Distinction Guidelines
 
 - **Single commands per line** when possible for clarity.
-- **Separate persona or user dialogue, action, and system/command output** clearly with punctuation or line breaks:
+- **Separate character or user dialogue, action, and system/command output** clearly with punctuation or line breaks:
 
     ```
     Mode: Roleplay.
     Janeway: Report, Mr. Paris.
     Paris: Course plotted, Captain.
-    Plex: Program suspended. All personae are paused.
+    Plex: Program suspended. All charactere are paused.
     ```
 
 **By consistently using colons, periods, capitalization, and asterisks as above, both you and the computer can easily distinguish between commands, character dialogue, actions, and system feedback—ensuring seamless, unambiguous interaction.**

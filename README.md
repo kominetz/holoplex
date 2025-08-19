@@ -18,7 +18,7 @@
 - Add new holodeck directories under `holodecks/` for new simulation environments.
 - Each holodeck directory should contain its manifest file (e.g., `holodeck_name.md`) and any specific resources.
 - Add or update files in `holodecks/common/` to have them included in all builds.
-- Place readmes, style guides, or scenario-specific assets in the holodeck directories—never in the personas directories.
+- Place readmes, style guides, or scenario-specific assets in the holodeck directories—never in the characters directories.
 - Automated validation, manifest generation, and batch file building.
 - Flexible resource inclusion for each build or simulation context.
 
@@ -31,12 +31,12 @@ holoplex/
 │
 ├── bin/                      # All CLI tools/scripts (shell and Python)
 │   ├── holoplex              # Orchestrator CLI script
-│   ├── persona_checker.py
+│   ├── character_checker.py
 │   ├── the_bridge_extractor.py
 │   ├── the_bridge_batcher.py
 │   └── ... (other scripts)
 │
-├── personas/                 # Individual persona files (markdown)
+├── characters/                 # Individual character files (markdown)
 │   ├── worf.md
 │   ├── thedoctor.md
 │   └── ...
@@ -45,7 +45,7 @@ holoplex/
 │   ├── common/               # Templates, images, or files shared by all builds
 │   │   ├── about_me.md
 │   │   ├── about_me_template.md
-│   │   └── holodeck_protocols.md  # Simulation/persona protocol reference
+│   │   └── holodeck_protocols.md  # Simulation/character protocol reference
 │   ├── templates/            # Templates, images, or files manually copied into new holodecks
 │   ├── the_bridge/           # Bridge-specific resources (docs, config, data, etc.)
 │   │   ├── README.md
@@ -97,11 +97,11 @@ holoplex/
 
 ## Quick Start
 
-1. **Add/Update Personae:**  
-   Add markdown persona files to `personas/`. Use normalized naming and keep them in sync with assignment manifests.
+1. **Add/Update Charactere:**  
+   Add markdown character files to `characters/`. Use normalized naming and keep them in sync with assignment manifests.
 
 2. **Define Assignments:**  
-   Group/department/panel assignments are maintained in markdown manifests (`holodecks/the_bridge/the_bridge.md`, etc.)—never in the persona files themselves.
+   Group/department/panel assignments are maintained in markdown manifests (`holodecks/the_bridge/the_bridge.md`, etc.)—never in the character files themselves.
 
 3. **Provide Resources (if desired):**  
    Place any needed supplementary files in `holodecks/the_bridge/` or `holodecks/common/` before building.
@@ -112,7 +112,7 @@ holoplex/
    bin/holoplex build the_bridge
    ```
 
-   - Cleans prior output, validates, extracts manifest, batches persona files, copies holodecks resources.
+   - Cleans prior output, validates, extracts manifest, batches character files, copies holodecks resources.
 
 5. **Check:**  
 
@@ -120,7 +120,7 @@ holoplex/
    bin/holoplex check the_bridge
    ```
 
-   - Validates manifest and persona file presence but does not batch or copy anything.
+   - Validates manifest and character file presence but does not batch or copy anything.
 
 6. **Clean:**  
 
@@ -138,13 +138,13 @@ holoplex/
 
 ## Best Practices
 
-- Store **all persona and resource files under version control** (Git recommended).
+- Store **all character and resource files under version control** (Git recommended).
 - Never manually edit or delete anything in `build/`—always use the holodeck commands.
 - Use resource folders for anything you might want per-group or in every build—this keeps builds reproducible and modular.
 
 ## Support
 
-- See `holodecks/common/holodeck_protocols.md` for simulation/persona standards.
+- See `holodecks/common/holodeck_protocols.md` for simulation/character standards.
 - For trouble or enhancements, review log output from the Python and shell scripts—clear explanations and warnings are provided.
 
 **Holoplex:** Advanced simulation and team management—structured, reproducible, and ready for any mission. Now with integrated resource support!
