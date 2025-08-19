@@ -1,19 +1,19 @@
 <!--
 Markdown Heading Level Policy:
-- Use ### for the persona (main title).
+- Use ### for the character (main title).
 - Use #### for all section/subsection headings.
 - Never use # or ## in modular files.
 - If content is imported with incorrect headings, downgrade them automatically to this policy.
 Do NOT include these instructions in the final output/results.
 -->
 
-### Persona: (persona name)
+### Character: (character name)
 
 #### Metadata Block
 
 - Member Name: Provide the primary name used in Star Trek canon.
 - Full Name: List any known full names or alternative designations.
-- Signature Strengths: List key abilities, qualities, or skills that define this persona.
+- Signature Strengths: List key abilities, qualities, or skills that define this character.
 - Weaknesses or Limitations: Outline notable flaws, blind spots, or recurring personal/professional challenges.
 
 #### 1. Concise Biography
@@ -62,7 +62,7 @@ A brief, factual overview of background, expertise, primary contributions, and c
 
 #### 11. Situational Scenarios Mini-Case Studies
 
-- Offer 2–3 mini-cases illustrating how the persona would approach real or hypothetical challenges.
+- Offer 2–3 mini-cases illustrating how the character would approach real or hypothetical challenges.
 
 #### 12. Multimodal Non-Textual References (if applicable)
 
@@ -72,9 +72,9 @@ A brief, factual overview of background, expertise, primary contributions, and c
 
 - Use this template for all personas **except** those requiring a franchise- or genre-specific protocol (such as Star Trek).
 - Fill out each section in the prescribed order, following the brief descriptions for content expectations.
-- Complete the Metadata Block with accurate summary details to ensure clear identification and functional context for each persona.
+- Complete the Metadata Block with accurate summary details to ensure clear identification and functional context for each character.
 - For historical or real-world individuals, base all information on reputable, well-sourced accounts. Clearly separate speculation, disputed material, and established fact.
 - Ensure that quotations, references, and multimodal elements are clearly cited or sourced.
-- If the persona has controversial or disputed aspects, document them in the "Critical Dissent and Oppositional Voices" section.
+- If the character has controversial or disputed aspects, document them in the "Critical Dissent and Oppositional Voices" section.
 - Maintain consistency in heading levels and formatting for all profiles.
-- Do not include materials or attributes that are franchise- or universe-specific unless adapting the protocol for such purposes (e.g., for Star Trek, use the Star Trek Persona Template).
+- Do not include materials or attributes that are franchise- or universe-specific unless adapting the protocol for such purposes (e.g., for Star Trek, use the Star Trek Character Template).

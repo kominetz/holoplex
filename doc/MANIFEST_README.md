@@ -4,21 +4,21 @@
 
 Every holodeck’s manifest (`holodeck_manifest.yaml`) describes:
 
-- How personas are organized for batching,
+- How characters are organized for batching,
 - Which batch files should be produced and how,
-- Which personas should always have a 1:1 batch file (for simulation),
+- Which characters should always have a 1:1 batch file (for simulation),
 - The structure and membership of all groups (departments, panels, etc.).
 
-The manifest has three main sections under the `personas:` key:
+The manifest has three main sections under the `characters:` key:
 
 - `batches:` (required) — specifies batching rules and file settings.
-- `individuals:` (optional) — a flat list of personas that always get a standalone batch file.
+- `individuals:` (optional) — a flat list of characters that always get a standalone batch file.
 - `groups:` (optional) — a list of groups (departments, panels, etc.), each with their own structure and members/roles.
 
 ## YAML Structure
 
 ```yaml
-personas:
+characters:
   batches:    # REQUIRED — see below
     ...
   individuals:  # OPTIONAL — always batched 1:1 as individual files
@@ -37,10 +37,10 @@ personas:
 
 ### 1. batches (REQUIRED)
 
-Defines how personas are batched. Common options:
+Defines how characters are batched. Common options:
 
 - `targets:` — controls the types of batches (see examples).
-- `everybody:` — if true, creates a batch file with all personas.
+- `everybody:` — if true, creates a batch file with all characters.
 - `file_prefix:` — prefix for all batch file names.
 - NOTE: Further keys control batch formatting and output.
 
@@ -63,20 +63,20 @@ batches:
   everybody: true
   file_prefix: "the_bridge"
   markdown_header: true
-  persona_separator: "\n\n"
+  character_separator: "\n\n"
   encoding: "utf-8"
 ```
 
 #### Supported Batch Target Keys
 
-- `for_each:`   — generates a batch for each listed persona or group (e.g., `individual`, `member`, `department`, `panel`).
+- `for_each:`   — generates a batch for each listed character or group (e.g., `individual`, `member`, `department`, `panel`).
 - `by:`         — generates a batch for each group or role (e.g., `by: role`, `by: department`).
 - `composite:`  — generates batches that combine multiple roles across groups, e.g. senior staff.
 - `everybody:`  — if true, generates a complete "everybody" batch.
 
 ### 2. individuals (OPTIONAL)
 
-A list of persona names, each of which always gets its own prefixed batch file (e.g., `the_bridge_spock.md`), whether or not the persona appears in any group.
+A list of character names, each of which always gets its own prefixed batch file (e.g., `the_bridge_spock.md`), whether or not the character appears in any group.
 
 **Example:**
 
@@ -131,14 +131,14 @@ groups:
   ## Batch: by=department, group=Science Department, roles=head+staff
 
   ```markdown
-- Individual persona files are named with prefix plus normalized name, e.g., `the_bridge_spock.md`.
+- Individual character files are named with prefix plus normalized name, e.g., `the_bridge_spock.md`.
 
 ## Examples
 
 ### Sandbox
 
 ```yaml
-personas:
+characters:
   batches:
     targets:
       - for_each: individual
@@ -163,7 +163,7 @@ personas:
 ### Forum (Panels)
 
 ```yaml
-personas:
+characters:
   batches:
     targets:
       - by: panel
@@ -194,7 +194,7 @@ personas:
 ### Bridge (Departments)
 
 ```yaml
-personas:
+characters:
   batches:
     targets:
       - by: department
@@ -227,7 +227,7 @@ personas:
 
 ## Best Practices
 
-- Always use `individuals` at the top level for 1:1 persona batch files (avoid `members` for this purpose to prevent confusion).
+- Always use `individuals` at the top level for 1:1 character batch files (avoid `members` for this purpose to prevent confusion).
 - Use `groups` for department, panel, or other structured teams with an explicit `type:` and `name:`.
 - Use unique keys (e.g., `people:` inside groups instead of `members:`) to avoid conflicts.
 - Specify clear batching rules in `batches.targets` for predictable outputs.

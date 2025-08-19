@@ -10,7 +10,7 @@ def build_full_file(holoname, output_dir):
     Assemble a single markdown file (parse-first style):
     - holodeck_protocols.md first
     - Each imported file bracketed by '## START: filename' / '## END: filename'
-    - Ends with Everybody persona batch
+    - Ends with Everybody character batch
     - Content normalization: replace lone '---' lines with blank lines for Markdown safety
     """
     full_filename = f"{holoname}_full.md"
@@ -19,13 +19,13 @@ def build_full_file(holoname, output_dir):
     # ✅ Core files in exact order (protocols first)
     core_files = [
         "holodeck_protocols.md",
-        "the_bridge.md",
+        f"{holoname}.md",
         "holodeck_cast.md",
         "holodeck_setting.md",
         "holodeck_script.md"
     ]
 
-    everybody_file = "persona_everybody.md"
+    everybody_file = "character_everybody.md"
     everybody_path = os.path.join(output_dir, everybody_file)
 
     created_on = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S %Z")
@@ -54,14 +54,14 @@ def build_full_file(holoname, output_dir):
 
         # Everybody section
         out.write(f"## START: {everybody_file}\n")
-        out.write("## Personas -- Everybody\n\n")
+        out.write("## Characters -- Everybody\n\n")
         if os.path.isfile(everybody_path):
             with open(everybody_path, "r", encoding="utf-8") as ef:
                 contents = sanitize_separators(ef.read().strip())
                 out.write(contents)
                 out.write("\n")
         else:
-            out.write("*Missing 'Everybody' persona file*\n")
+            out.write("*Missing 'Everybody' character file*\n")
         out.write(f"## END: {everybody_file}\n")
 
     print(f"Wrote parse-friendly single file: {full_filename}")
@@ -77,34 +77,34 @@ def copy_contents(src_dir, dest_dir):
             shutil.copy2(src_path, dest_path)
     print(f"Copied all files (non-recursive) from {src_dir} to {dest_dir}")
 
-def normalize_persona_filename(name, persona_dir):
-    return os.path.join(persona_dir, re.sub(r"[^a-zA-Z0-9]", "", name.lower()) + ".md")
+def normalize_character_filename(name, character_dir):
+    return os.path.join(character_dir, re.sub(r"[^a-zA-Z0-9]", "", name.lower()) + ".md")
 
-def persona_filename_base(name):
+def character_filename_base(name):
     return re.sub(r"[^a-zA-Z0-9]", "", name.lower())
 
 def batch_header(**kwargs):
     desc = ', '.join(f'{k}={v}' for k, v in kwargs.items() if v is not None)
     return f"## Batch: {desc}\n\n"
 
-def extract_batch(names, persona_dir, encoding, markdown_header, persona_separator, batchhdr=None, missing_personas=set()):
+def extract_batch(names, character_dir, encoding, markdown_header, character_separator, batchhdr=None, missing_characters=set()):
     content = []
     for name in names:
-        fname = normalize_persona_filename(name, persona_dir)
+        fname = normalize_character_filename(name, character_dir)
         if os.path.isfile(fname):
             with open(fname, encoding=encoding) as pf:
-                personatext = pf.read().strip()
-                if markdown_header and not personatext.lstrip().startswith("#"):
-                    personatext = f"# {name}\n\n" + personatext
-                content.append(personatext)
+                charactertext = pf.read().strip()
+                if markdown_header and not charactertext.lstrip().startswith("#"):
+                    charactertext = f"# {name}\n\n" + charactertext
+                content.append(charactertext)
         else:
-            print(f'Warning: persona file missing for {name} ({fname})')
-            if missing_personas is not None:
-                missing_personas.add(name)
-    out = persona_separator.join(content) + "\n" if content else ""
+            print(f'Warning: character file missing for {name} ({fname})')
+            if missing_characters is not None:
+                missing_characters.add(name)
+    out = character_separator.join(content) + "\n" if content else ""
     return (batchhdr or "") + out if out else ""
 
-def get_all_persona_names_from_groups(groups):
+def get_all_character_names_from_groups(groups):
     names = set()
     for group in groups:
         if not isinstance(group, dict):
@@ -137,41 +137,41 @@ if len(sys.argv) != 2:
 
 HOLONAME = sys.argv[1]
 BUILD_DIR = os.path.join('build', HOLONAME)
-PERSONA_DIR = 'personas'
+CHARACTER_DIR = 'characters'
 OUTPUT_DIR = BUILD_DIR
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-copy_contents(os.path.join('holodecks', 'common'), OUTPUT_DIR)
-copy_contents(os.path.join('holodecks', HOLONAME), OUTPUT_DIR)
+copy_contents(os.path.join('programs', 'common'), OUTPUT_DIR)
+copy_contents(os.path.join('programs', HOLONAME), OUTPUT_DIR)
 MANIFEST = os.path.join(BUILD_DIR, 'holodeck_cast.md')
 manifest = extract_yaml_from_md(MANIFEST)
 
-personas = manifest.get("personas", {})
-batches_conf = personas.get("batches", {})
+characters = manifest.get("characters", {})
+batches_conf = characters.get("batches", {})
 
 file_prefix = batches_conf.get("file_prefix", HOLONAME)
-persona_separator = batches_conf.get("persona_separator", "\n\n")
+character_separator = batches_conf.get("character_separator", "\n\n")
 encoding = batches_conf.get("encoding", "utf-8")
 markdown_header = batches_conf.get("markdown_header", True)
 targets = batches_conf.get("targets") or []
 everybody = batches_conf.get("everybody", True)
-missing_personas = set()
+missing_characters = set()
 
 # 1. Individual members
-members = personas.get("roles", {}).values()
+members = characters.get("roles", {}).values()
 for name in members:
-    fname = f"{file_prefix}_{persona_filename_base(name)}.md"
+    fname = f"{file_prefix}_{character_filename_base(name)}.md"
     batchhdr = batch_header(by="member", person=name)
     out_path = os.path.join(OUTPUT_DIR, fname)
     with open(out_path, "w", encoding=encoding) as f:
         outstr = extract_batch(
-            [name], PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
+            [name], CHARACTER_DIR, encoding, markdown_header, character_separator, batchhdr, missing_characters)
         f.write(outstr)
     print(f"Wrote {fname}")
 
 # 2. Group-based batching (if any)
-groups = personas.get("groups", [])
+groups = characters.get("groups", [])
 if groups:
     group_lookup = {}
     role_lookup = {}
@@ -202,18 +202,18 @@ if groups:
                     if group.get("name") == gname:
                         gtype = group.get("type")
                         break
-                batch_personae = []
+                batch_charactere = []
                 for role, members in roles.items():
-                    batch_personae.extend(members)
-                unique_sorted = sorted(set(batch_personae))
+                    batch_charactere.extend(members)
+                unique_sorted = sorted(set(batch_charactere))
                 if unique_sorted:
                     roles_used = "+".join(r for r in roles.keys())
-                    fname = f"{file_prefix}_{persona_filename_base(gname)}.md"
+                    fname = f"{file_prefix}_{character_filename_base(gname)}.md"
                     batchhdr = batch_header(by=bytype, type=gtype, group=gname, roles=roles_used)
                     out_path = os.path.join(OUTPUT_DIR, fname)
                     with open(out_path, "w", encoding=encoding) as f:
                         outstr = extract_batch(
-                            unique_sorted, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
+                            unique_sorted, CHARACTER_DIR, encoding, markdown_header, character_separator, batchhdr, missing_characters)
                         f.write(outstr)
                     print(f"Wrote {fname}")
 
@@ -223,12 +223,12 @@ if groups:
             for role, people in role_lookup.items():
                 unique_people = sorted(people)
                 if unique_people:
-                    fname = f"{file_prefix}_{persona_filename_base(role)}.md"
+                    fname = f"{file_prefix}_{character_filename_base(role)}.md"
                     batchhdr = batch_header(by="role", role=role)
                     out_path = os.path.join(OUTPUT_DIR, fname)
                     with open(out_path, "w", encoding=encoding) as f:
                         outstr = extract_batch(
-                            unique_people, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
+                            unique_people, CHARACTER_DIR, encoding, markdown_header, character_separator, batchhdr, missing_characters)
                         f.write(outstr)
                     print(f"Wrote {fname}")
 
@@ -252,12 +252,12 @@ if groups:
                     unique_members = sorted(set(members))
                     if unique_members:
                         suffix = f"_{file_suffix}" if file_suffix else ""
-                        fname = f"{file_prefix}_{persona_filename_base(gname)}{suffix}.md"
+                        fname = f"{file_prefix}_{character_filename_base(gname)}{suffix}.md"
                         batchhdr = batch_header(by=group_param, group=gname, roles="+".join(include_roles))
                         out_path = os.path.join(OUTPUT_DIR, fname)
                         with open(out_path, "w", encoding=encoding) as f:
                             outstr = extract_batch(
-                                unique_members, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
+                                unique_members, CHARACTER_DIR, encoding, markdown_header, character_separator, batchhdr, missing_characters)
                             f.write(outstr)
                         print(f"Wrote {fname}")
             elif is_for_all:
@@ -272,7 +272,7 @@ if groups:
                     out_path = os.path.join(OUTPUT_DIR, fname)
                     with open(out_path, "w", encoding=encoding) as f:
                         outstr = extract_batch(
-                            unique_members, PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
+                            unique_members, CHARACTER_DIR, encoding, markdown_header, character_separator, batchhdr, missing_characters)
                         f.write(outstr)
                     print(f"Wrote {fname}")
 
@@ -280,26 +280,26 @@ if groups:
 if everybody:
     all_names = set()
     all_names.update(members)
-    all_names.update(get_all_persona_names_from_groups(groups))
+    all_names.update(get_all_character_names_from_groups(groups))
     if all_names:
         fname = f"{file_prefix}_everybody.md"
         batchhdr = batch_header(by="everybody")
         out_path = os.path.join(OUTPUT_DIR, fname)
         with open(out_path, "w", encoding=encoding) as f:
             outstr = extract_batch(
-                sorted(all_names), PERSONA_DIR, encoding, markdown_header, persona_separator, batchhdr, missing_personas)
+                sorted(all_names), CHARACTER_DIR, encoding, markdown_header, character_separator, batchhdr, missing_characters)
             f.write(outstr)
         print(f"Wrote {fname}")
 
-# --- At end of main (after persona batches), call:
+# --- At end of main (after character batches), call:
 build_full_file(HOLONAME, OUTPUT_DIR)
 
-# === Post-Compile Persona Check Report ===
+# === Post-Compile Character Check Report ===
 
-if missing_personas:
-    print("\n=== Post-Compile Persona Check Report ===")
-    print(f"Total missing persona files: {len(missing_personas)}")
-    for mp in sorted(missing_personas):
+if missing_characters:
+    print("\n=== Post-Compile Character Check Report ===")
+    print(f"Total missing character files: {len(missing_characters)}")
+    for mp in sorted(missing_characters):
         print(f" - {mp}")
 else:
-    print("\nAll persona files accounted for.")
+    print("\nAll character files accounted for.")

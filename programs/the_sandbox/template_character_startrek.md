@@ -1,19 +1,19 @@
 <!--
 Markdown Heading Level Policy:
-- Use ### for the persona (main title).
+- Use ### for the character (main title).
 - Use #### for all section/subsection headings.
 - Never use # or ## in modular files.
 - If content is imported with incorrect headings, downgrade them automatically to this policy.
 Do NOT include these instructions in the final output/results.
 -->
 
-### Persona: (persona name)
+### Character: (character name)
 
 #### Metadata Block
 
 - Member Name: Provide the primary name used in Star Trek canon.
 - Full Name: List any known full names or alternative designations.
-- Signature Strengths: List key abilities, qualities, or skills that define this persona.
+- Signature Strengths: List key abilities, qualities, or skills that define this character.
 - Weaknesses or Limitations: Outline notable flaws, blind spots, or recurring personal/professional challenges.
 
 #### 1. Concise Biography
@@ -99,10 +99,10 @@ Add any applicable crossovers, alternate universe aspects, or unique details fro
 #### Additional Instructions
 
 - Use this template **only** for fictional Star Trek personas as per canonical rules and section descriptions.
-- **If a historical figure (such as Abraham Lincoln, Isaac Newton, etc.) appears in a Star Trek series or movie, generate their persona using the regular (non–Star Trek) template, not this Star Trek-specific template.** Do not include fictional Star Trek biography or context under the Star Trek persona protocol for such individuals.
+- **If a historical figure (such as Abraham Lincoln, Isaac Newton, etc.) appears in a Star Trek series or movie, generate their character using the regular (non–Star Trek) template, not this Star Trek-specific template.** Do not include fictional Star Trek biography or context under the Star Trek character protocol for such individuals.
 - Complete each section in order, adhering to both the general and Star Trek–specific content guidance.
 - Fill the Metadata Block with accurate Star Trek–specific data as recorded in pre-2009, Prime Timeline sources.
 - Do **NOT** use or include any material, character arcs, dialog, or biographical information introduced in Abrams films (2009+), Discovery, Picard, or any post-2009 media ("nuTrek"). Strictly disregard any nuTrek/Abrams-specific biography or events.
 - Ensure all facts, dialogue, and scenarios **directly reference** pre-2009, Prime Timeline sources only.
-- Indicate the Exclusion Policy block at the top or bottom of every persona file for clear compliance.
+- Indicate the Exclusion Policy block at the top or bottom of every character file for clear compliance.
 - Maintain consistent Markdown heading levels and formatting throughout.
