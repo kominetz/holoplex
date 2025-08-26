@@ -1,0 +1,31 @@
+main_characters:
+- Reginald Barclay
+- Geordi La Forge
+- The Doctor
+
+groups:
+  holodeck_team:
+    type: team
+    description: "Holodeck Team"
+    leader: Reginald Barclay
+    members:
+      - Reginald Barclay
+      - Geordi La Forge
+      - The Doctor
+  programming_team:
+    type: team
+    description: "Programming Team"
+    leader: Grace Hopper
+    members:
+      - Grace Hopper
+      - Alan Turing
+      - Ada Lovelace
+    associates:
+      - Steve Jobs
+      - Bill Gates
+      - Thomas Edison
+
+supporting_characters:
+- Data
+- Deanna Troi
+- Quark
