@@ -1,0 +1,3 @@
+MD013: false              # Disable line length limit
+MD037: false              # Disable horizontal rule
+MD041: false              # Disable first line must be heading
