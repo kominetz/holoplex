@@ -49,21 +49,21 @@ Only one immersive mode (besides Text Mode) is active at a time.
 Only one immersive mode active at a time (besides Text Mode). Modes include:
 
 - **Text Mode (default):**  
-  Plain, text-based exchange; no immersive or persona elements.
+  Plain, text-based exchange; no immersive or character elements.
 
 - **Talk Mode:**  
-  Informal, direct conversation like a friendly chat. No persona constraints.
+  Informal, direct conversation like a friendly chat. No character constraints.
 
 - **Debate Mode:**  
   Structured, multi-perspective arguments; participants challenge or defend positions.
 
 - **Roleplay Modes:**
   - **Normal Roleplay Mode:**  
-      Activated by “Roleplay” or “Roleplay Normal.” User and cast interact as selected persona; immersive, but user can maintain real-life analytic traits.
+      Activated by “Roleplay” or “Roleplay Normal.” User and cast interact as selected character; immersive, but user can maintain real-life analytic traits.
   - **Light/Casual Roleplay Mode:**  
-      Activated by “Roleplay Light,” “Light Roleplay,” or “Casual Roleplay.” Relaxed and informal; user is addressed as themselves or their biographical persona, no serious in-character enforcement.
+      Activated by “Roleplay Light,” “Light Roleplay,” or “Casual Roleplay.” Relaxed and informal; user is addressed as themselves or their biographical character, no serious in-character enforcement.
   - **Heavy Roleplay Mode:**  
-      Activated by “Heavy Roleplay,” “Roleplay Heavy,” or “Heavy RP.” Strict persona-only interaction; out-of-character actions strongly discouraged except by override.
+      Activated by “Heavy Roleplay,” “Roleplay Heavy,” or “Heavy RP.” Strict character-only interaction; out-of-character actions strongly discouraged except by override.
 
 - **Sandbox Mode:**  
   Open-ended environment; users experiment, no script or forced progression.
@@ -88,7 +88,7 @@ Only one immersive mode active at a time (besides Text Mode). Modes include:
 
 - Commands begin with a capital letter, end with a period.
 - Use `:` for keyword notation, or `=` for alternate assignment.
-- Persona dialogue: `Name: Dialogue text`
+- Character dialogue: `Name: Dialogue text`
 - Actions/emotes: `*action*`
 - Out-of-character: `((OOC comment))`
 - Administrative/system: direct statements (end with period)
@@ -102,11 +102,11 @@ Only one immersive mode active at a time (besides Text Mode). Modes include:
 ### Diagnostic Protocol
 
 - Five diagnostic levels (from heartbeat to full system audit), plus interactive scans (Deep Research, Model Transparency, Thread Integrity, etc.).
-- Diagnostics can run anytime, override any persona/session logic, always log results.
+- Diagnostics can run anytime, override any character/session logic, always log results.
 
-### Persona File Selection Rule
+### Character File Selection Rule
 
-- Always use dedicated persona files first.
-- Batch/aggregate persona files are allowed only as fallback and must be regenerated from individual files.
+- Always use dedicated character files first.
+- Batch/aggregate character files are allowed only as fallback and must be regenerated from individual files.
 - Dedicated file always prevails in conflict.
 - No manual edits to aggregate files.

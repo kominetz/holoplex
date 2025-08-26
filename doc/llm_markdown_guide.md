@@ -32,9 +32,10 @@ Markdown is often more token-efficient than JSON for LLMs, frequently reducing t
 
 ### Attention/Emphasis Control
 
-- `**Bold**`: High attention, primary information (85% extraction accuracy)
-- `*Italic*`: Contextual information, temporary state (60% extraction accuracy)  
-- `Plain`: Standard information, stable attributes (70% extraction accuracy)
+- **Bold**: High attention, primary information
+- *Italic*: Contextual information, temporary state  
+- Plain: Standard information, stable attributes
+- `Backticks`: Use only for genuine code elements (filenames, variable names, technical identifiers, mode_ids)
 
 ### Structure Rules
 
