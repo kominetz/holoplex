@@ -7,7 +7,10 @@ Mapping Computer Science Concepts onto Markdown Patterns for LLM Programming
 This guide maps programming concepts to Markdown patterns for LLM simulations. Key principles:
 
 - Headings define unique entities; use plain labels + key:value for data
-- Use {variables} for runtime substitution; reserve [Type: id] for explicit cross-references  
+- Use of `variable` versus {variable}
+  - {variable} where you expect value interpolation, template expansion, or runtime evaluation.
+  - plain variable names when declaring, assigning, or configuring values.
+  - Reserve [Type: id] for explicit cross-references
 - Prefer sets/lists/dictionaries over prose; keep examples minimal and literal
 - Align with YAML/Python where it improves clarity (true/false/null, comments, multiline)
 - Follow the Markdown Generation Policy at the end for lintability
