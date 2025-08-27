@@ -1,5 +1,7 @@
 # User Persona File
 
+<!-- copy this to src/personas/persona_user.md and edit it. That file path is excluded from git for privacy reasons. -->
+
 ## Name
 
 [Enter full name or alias]

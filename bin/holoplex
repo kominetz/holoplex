@@ -19,9 +19,9 @@ CMD=$1
 HOLODECK=$2
 
 # Paths and filenames
-HOLODECK_DIR="programs/$HOLODECK"
+HOLODECK_DIR="src/programs/$HOLODECK"
 BUILD_DIR="build/$HOLODECK"
-COMPILER="bin/holodeck_compiler.py"
+COMPILER="bin/build_holodeck.py"
 
 # Check holodeck directory
 if [ ! -d "$HOLODECK_DIR" ]; then
@@ -36,8 +36,8 @@ case "$CMD" in
             rm -rf "$BUILD_DIR"
             echo "Removed previous $BUILD_DIR/"
         fi
-        # Batch character files using the new compiler
-        python "$COMPILER" "$HOLODECK"
+    # Batch character files using the new builder
+    python "$COMPILER" "$HOLODECK"
         echo "Holoplex build complete for $HOLODECK → $BUILD_DIR/"
         ;;
     clean)

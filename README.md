@@ -24,50 +24,42 @@
 
 Holoplex is optimized for clarity, reproducibility, automation, and extensibility—suitable for everything from role-based simulation to real-world team scenario planning.
 
+
 ## Directory Structure
 
 ```plaintext
 holoplex/
 │
-├── bin/                      # All CLI tools/scripts (shell and Python)
-│   ├── holoplex              # Orchestrator CLI script
-│   ├── character_checker.py
-│   ├── the_bridge_extractor.py
-│   ├── the_bridge_batcher.py
-│   └── ... (other scripts)
+├── bin/                      # CLI tools/scripts (shell and Python)
+│   ├── holodeck_compiler.py  # Main compiler script
+│   └── holoplex              # Orchestrator CLI script
 │
-├── characters/                 # Individual character files (markdown)
-│   ├── worf.md
-│   ├── thedoctor.md
-│   └── ...
+├── doc/                      # Documentation and guides
+│   ├── ai_terminology.md
+│   ├── MANIFEST_README.md
+│   ├── markdown_scripting_guide.md
+│   ├── perplexity_world_mode.md
+│   └── holodeck_inspiration/ # interpretations of the holodeck portrayal
 │
-├── holodecks/                # Shared and group-specific static resources
-│   ├── common/               # Templates, images, or files shared by all builds
-│   │   ├── about_me.md
-│   │   ├── about_me_template.md
-│   │   └── holodeck_protocols.md  # Simulation/character protocol reference
-│   ├── templates/            # Templates, images, or files manually copied into new holodecks
-│   ├── the_bridge/           # Bridge-specific resources (docs, config, data, etc.)
-│   │   ├── README.md
-│   │   └── the_bridge.md     # Markdown manifest for The Bridge
-│   ├── the_forum/            # Forum-specific resources (docs, images, etc.)
-│   │   └── the_forum.md      # Manifest for The Forum
-│   └── the_sandbox/          # Sandbox-specific resources
+├── src/                      # Main source files
+│   ├── characters/           # Individual character markdown files
+│   │   ├── abrahamlincoln.md
+│   │   ├── adalovelace.md
+│   │   └── ...
+│   ├── personas/             # Persona definitions
+│   │   └── persona_computer.md
+│   ├── private/              # Private or restricted files (if any)
+│   ├── programs/             # Program scripts or scenario logic
+│   ├── protocols/            # Protocol markdown files
+│   │   ├── protocol_holodeck.md
+│   │   └── protocol_roleplay.md
+│   └── templates/            # Markdown templates
+│       └── persona_user.md
 │
-├── protocols/                # Protocol files
-│   └── protocol_roleplay.md
+├── tmp/                      # Temporary or backup files
+│   ├── concepts_backup.md
+│   └── my_ready_room.md
 │
-├── doc/                      # Documentation
-│   └── ai_terminology.md
-│
-├── build/                    # All build artifacts (auto-generated)
-│   ├── the_bridge/           # All runtime/init files for The Bridge
-│   │   ├── the_bridge_full_crew.md
-│   │   ├── the_bridge_heads.md
-│   │   └── ... (batches, configs, protocol)
-│   └── the_bridge_manifest.yaml     # Manifest for The Bridge (not used at runtime)
-│
-├── forum_adhoc.md            # Forum-related documentation
 └── README.md                 # (this file)
 ```
 

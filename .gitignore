@@ -3,4 +3,4 @@ build/
 /.venv
 /.vscode
 /tmp
-/programs/private
+/src/personas/persona_user.md

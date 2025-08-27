@@ -1,7 +1,19 @@
+computer_persona: personas/persona_computer_tng.md
+user_persona: personas/persona_user.md
+holodeck_protocols: protocols/protocol_holodeck.md
+additional_files:
+- templates/template_character.md
+- templates/template_character_startrek.md
+
 main_characters:
 - Reginald Barclay
 - Geordi La Forge
-- The Doctor
+- The Doctor (EMH)
+
+supporting_characters:
+- Data
+- Deanna Troi
+- Quark
 
 groups:
   holodeck_team:
@@ -11,7 +23,7 @@ groups:
     members:
       - Reginald Barclay
       - Geordi La Forge
-      - The Doctor
+      - The Doctor (EMH)
   programming_team:
     type: team
     description: "Programming Team"
@@ -19,13 +31,11 @@ groups:
     members:
       - Grace Hopper
       - Alan Turing
-      - Ada Lovelace
+      - Donald Knuth
+      - Dennis Ritchie
+      - Martin Fowler
     associates:
       - Steve Jobs
       - Bill Gates
       - Thomas Edison
-
-supporting_characters:
-- Data
-- Deanna Troi
-- Quark
+      - Ada Lovelace
