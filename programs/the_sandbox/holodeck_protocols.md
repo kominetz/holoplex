@@ -7,8 +7,8 @@ program_mode: Standard
 program_voice: Computer
 program_location: None
 program_datetime: Now
-user_persona: `user_persona.md`
-computer_persona: `computer_persona.md`
+user_persona: `persona_user.md`
+computer_persona: `persona_computer.md`
 main_characters: []
 supporting_characters: []
 
