@@ -1,5 +1,16 @@
 # Holodeck Program: The Sandbox
 
+## Default Session Parameterss
+
+program_name: The Sandbox
+program_state: Initialization
+program_mode: Standard
+program_voice: Computer
+program_location: Office
+program_datetime: Now
+main_characters: []
+supporting_characters: []
+
 ## Locations
 
 ### Office

@@ -34,20 +34,25 @@ Action: Narrative or emotive description, indicated by asterisks (e.g., smiles).
 - **Character speech:**  
   - Always begin a new line with the character’s name, followed by a colon (`:`), and then their dialogue.
     - Example:  
-      ```
+
+      ```text
       Janeway: Set a course for the Badlands.
       Tom Paris: Aye, Captain.
       ```
+
 - **Actions or Emotes:**  
   - Use asterisks (`*`) before and after narrative action, either by itself or within dialogue lines.
     - Example:  
-      ```
+
+      ```text
       *raises an eyebrow*
       Worf: *growls softly* The Klingon way is best.
       ```
+
 - **Avoid OOC (out-of-character) comments within roleplay modes unless clearly marked**, ideally using double parentheses:
-    - Example:  
-      ```
+  - Example:  
+
+      ```text
       ((Quick question: Should I scan for life signs?))
       ```
 
@@ -65,7 +70,7 @@ Action: Narrative or emotive description, indicated by asterisks (e.g., smiles).
 - **Single commands per line** when possible for clarity.
 - **Separate character or user dialogue, action, and system/command output** clearly with punctuation or line breaks:
 
-    ```
+    ```text
     Mode: Roleplay.
     Janeway: Report, Mr. Paris.
     Paris: Course plotted, Captain.
@@ -73,4 +78,3 @@ Action: Narrative or emotive description, indicated by asterisks (e.g., smiles).
     ```
 
 **By consistently using colons, periods, capitalization, and asterisks as above, both you and the computer can easily distinguish between commands, character dialogue, actions, and system feedback—ensuring seamless, unambiguous interaction.**
-
